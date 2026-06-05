@@ -150,7 +150,7 @@ function AdminBanners() {
       if (mobileFile) {
         mobileImageUrl = await uploadStoreImage(mobileFile, 'banners/mobile', {
           convertToWebp: true,
-          maxWidth: 1448,
+          maxWidth: 1086,
           quality: 0.82,
         })
       }
@@ -236,7 +236,7 @@ function AdminBanners() {
             disabled={saving}
           />
           <ImageField
-            label="Mobile (1448x1086)"
+            label="Mobile (1086x1448)"
             currentUrl={form.mobile_image_url}
             previewSrc={mobilePreview}
             onFileChange={setMobileFile}

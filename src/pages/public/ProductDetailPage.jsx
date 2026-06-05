@@ -47,10 +47,10 @@ function ProductDetailPage() {
     loadProduct()
   }, [slug])
 
-  const productUrl = `${window.location.origin}/veiculo/${slug}`
+  const productUrl = `${window.location.origin}/produto/${slug}`
   const questionLink = createWhatsappLink(
     settings.whatsapp_number,
-    `Ola! Tenho uma duvida sobre o veiculo: ${product?.name || ''}. Link: ${productUrl}`,
+    `Olá! Tenho uma dúvida sobre o produto: ${product?.name || ''}. Link: ${productUrl}`,
   )
   const gallery = useMemo(
     () => [product?.image_url, ...(product?.gallery_urls || [])].filter(Boolean),
@@ -63,9 +63,9 @@ function ProductDetailPage() {
     return (
       <main className="page">
         <EmptyState
-          title="Veiculo nao encontrado"
-          message="Confira se o link esta correto ou volte para a lista de veiculos."
-          action={<Link to="/veiculos">Ver veiculos</Link>}
+          title="Produto não encontrado"
+          message="Confira se o link está correto ou volte para a lista de produtos."
+          action={<Link to="/produtos">Ver produtos</Link>}
         />
       </main>
     )
@@ -104,21 +104,21 @@ function ProductDetailPage() {
 
           {product.type === 'suplemento' ? (
             <div className="info-box">
-              <strong>Detalhes do veiculo</strong>
-              <p>Consulte ano, versao, quilometragem, documentacao e disponibilidade pelo atendimento.</p>
+              <strong>Detalhes do produto</strong>
+              <p>Consulte tamanhos, tecido, personalização e disponibilidade pelo atendimento.</p>
             </div>
           ) : null}
 
           {product.type === 'vestuario' ? (
             <div className="info-box">
               <strong>Atendimento personalizado</strong>
-              <p>Confira condicao, cor, opcionais e formas de negociacao pelo atendimento.</p>
+              <p>Confira cor, medidas, estoque e formas de pedido pelo atendimento.</p>
             </div>
           ) : null}
 
           {product.variants?.length ? (
             <div>
-              <h2>Versoes e opcionais</h2>
+              <h2>Variações e tamanhos</h2>
               <div className="variant-list">
                 {product.variants.map((variant) => (
                   <span key={variant.id} className="tag">
@@ -139,7 +139,7 @@ function ProductDetailPage() {
             </button>
             {questionLink ? (
               <a className="button secondary" href={questionLink} target="_blank" rel="noreferrer">
-                Tirar duvida
+                Tirar dúvida
               </a>
             ) : null}
           </div>
@@ -159,7 +159,7 @@ function ProductDetailPage() {
           <div className="section-heading">
             <div>
               <span className="eyebrow">Relacionados</span>
-              <h2>Voce tambem pode se interessar</h2>
+              <h2>Você também pode se interessar</h2>
             </div>
           </div>
           <div className="product-grid">

@@ -13,10 +13,13 @@ import { listHomeCategoryBanners } from '../../services/homeCategoryBannersServi
 import { listProducts } from '../../services/productsService.js'
 
 const CATEGORY_BANNER_COPY = {
-  carros: { title: 'Carros', subtitle: 'Sedans, hatches, SUVs e mais' },
-  motos: { title: 'Motos', subtitle: 'Modelos selecionados para sua rotina' },
-  veiculos: { title: 'Veiculos', subtitle: 'Toda a frota disponivel' },
-  ofertas: { title: 'Ofertas', subtitle: 'Oportunidades em destaque' },
+  camisas: 'Camisas',
+  clubes: 'Clubes',
+  selecoes: 'Seleções',
+  retro: 'Retro',
+  esportes: 'Esportes',
+  produtos: 'Produtos',
+  ofertas: 'Ofertas',
 }
 
 function getCategoryBannerCopy(slot) {
@@ -26,12 +29,8 @@ function getCategoryBannerCopy(slot) {
     .replace(/[\u0300-\u036f]/g, '')
 
   const match = Object.keys(CATEGORY_BANNER_COPY).find((item) => key.includes(item))
-  const fallback = match ? CATEGORY_BANNER_COPY[match] : CATEGORY_BANNER_COPY.veiculos
-
-  return {
-    title: slot.name || fallback.title,
-    subtitle: fallback.subtitle,
-  }
+  const fallback = match ? CATEGORY_BANNER_COPY[match] : CATEGORY_BANNER_COPY.produtos
+  return slot.name || fallback
 }
 
 function IconWhatsapp() {
@@ -68,14 +67,15 @@ function Home() {
           listPosts({ onlyPublished: true, limit: 3 }),
           listHomeCategoryBanners().catch(() => []),
         ])
-        const [supplementProducts, clothingProducts, promoProducts] = await Promise.all([
-          listProducts({ onlyActive: true, type: 'suplemento', limit: 4 }),
+        const [shirtProducts, sportsProducts, accessoryProducts, promoProducts] = await Promise.all([
+          listProducts({ onlyActive: true, type: 'suplemento', limit: 8 }),
           listProducts({ onlyActive: true, type: 'vestuario', limit: 4 }),
+          listProducts({ onlyActive: true, type: 'acessorio', limit: 4 }),
           listProducts({ onlyActive: true, limit: 8 }),
         ])
         setProducts(featuredProducts)
-        setSupplements(supplementProducts)
-        setClothing(clothingProducts)
+        setSupplements(shirtProducts.slice(0, 4))
+        setClothing([...sportsProducts, ...accessoryProducts].slice(0, 4))
         setPromos(promoProducts.filter((product) => product.promo_price).slice(0, 4))
         setBanners(activeBanners)
         setCategoryBanners(catBanners)
@@ -98,29 +98,28 @@ function Home() {
         <div className="section-heading">
           <div>
             <span className="eyebrow">Categorias</span>
-            <h2>Escolha seu veiculo</h2>
+            <h2>Escolha seu produto</h2>
           </div>
         </div>
         {categoryBanners.length > 0 ? (
           <div className="cat-home-grid">
             {categoryBanners.map((slot) => {
-              const copy = getCategoryBannerCopy(slot)
+              const title = getCategoryBannerCopy(slot)
 
               return (
                 <Link
                   key={slot.id}
                   className="cat-home-item"
-                  to={slot.link_to || '/veiculos'}
-                  aria-label={`${copy.title}: ${copy.subtitle}`}
+                  to={slot.link_to || '/produtos'}
+                  aria-label={title}
                 >
                   {slot.image_url ? (
                     <img src={slot.image_url} alt="" loading="lazy" />
                   ) : (
-                    <span className="cat-home-placeholder">{copy.title}</span>
+                    <span className="cat-home-placeholder">{title}</span>
                   )}
                   <span className="cat-home-copy">
-                    <strong>{copy.title}</strong>
-                    <span>{copy.subtitle}</span>
+                    <strong>{title}</strong>
                   </span>
                 </Link>
               )
@@ -128,21 +127,17 @@ function Home() {
           </div>
         ) : (
           <div className="category-grid premium-categories">
-            <Link className="category-link category-featured" to="/carros" style={{ '--cat-img': 'url(/vehicle-car.svg)' }}>
-              <strong>Carros</strong>
-              <span>Sedans, hatches, SUVs e mais</span>
+            <Link className="category-link category-featured" to="/camisas" style={{ '--cat-img': 'url(/cat-vestuario.webp)' }}>
+              <strong>Camisas</strong>
             </Link>
-            <Link className="category-link category-featured" to="/motos" style={{ '--cat-img': 'url(/vehicle-moto.svg)' }}>
-              <strong>Motos</strong>
-              <span>Modelos selecionados para sua rotina</span>
+            <Link className="category-link category-featured" to="/esportes" style={{ '--cat-img': 'url(/cat-produtos.webp)' }}>
+              <strong>Esportes</strong>
             </Link>
-            <Link className="category-link category-featured" to="/veiculos" style={{ '--cat-img': 'url(/vehicle-stock.svg)' }}>
-              <strong>Veiculos</strong>
-              <span>Toda a frota disponivel</span>
+            <Link className="category-link category-featured" to="/produtos" style={{ '--cat-img': 'url(/cat-suplementos.webp)' }}>
+              <strong>Produtos</strong>
             </Link>
             <Link className="category-link category-featured" to="/ofertas?sort=promocoes" style={{ '--cat-img': 'url(/vehicle-offers.svg)' }}>
               <strong>Ofertas</strong>
-              <span>Oportunidades em destaque</span>
             </Link>
           </div>
         )}
@@ -152,9 +147,9 @@ function Home() {
         <div className="section-heading">
           <div>
             <span className="eyebrow">Vitrine</span>
-            <h2>Veiculos em destaque</h2>
+            <h2>Produtos em destaque</h2>
           </div>
-          <Link to="/veiculos">Ver todos</Link>
+          <Link to="/produtos">Ver todos</Link>
         </div>
 
         {loading ? <Loading /> : null}
@@ -162,7 +157,7 @@ function Home() {
         {!loading && !products.length ? (
           <EmptyState
             title="Nenhum destaque cadastrado"
-            message="Ative veiculos como destaque no painel administrativo."
+            message="Ative produtos como destaque no painel administrativo."
           />
         ) : null}
         <ProductCarousel products={products} whatsappNumber={settings.whatsapp_number} />
@@ -185,8 +180,8 @@ function Home() {
         <div>
           <div className="section-heading">
             <div>
-              <span className="eyebrow">Carros</span>
-              <h2>Carros para todos os estilos</h2>
+              <span className="eyebrow">Torcida</span>
+              <h2>Camisas de clubes e seleções</h2>
             </div>
           </div>
           <div className="product-grid small-grid">
@@ -202,8 +197,8 @@ function Home() {
         <div>
           <div className="section-heading">
             <div>
-              <span className="eyebrow">Motos</span>
-              <h2>Motos em destaque</h2>
+              <span className="eyebrow">Esportes</span>
+              <h2>Itens esportivos em destaque</h2>
             </div>
           </div>
           <div className="product-grid small-grid">
@@ -223,7 +218,7 @@ function Home() {
           <div className="section-heading">
             <div>
               <span className="eyebrow">Blog</span>
-              <h2>Ultimos artigos</h2>
+              <h2>Últimos artigos</h2>
             </div>
             <Link to="/blog">Ver todos</Link>
           </div>
@@ -251,7 +246,7 @@ function Home() {
         <div className="section-heading">
           <div>
             <span className="eyebrow">Como funciona</span>
-            <h2>Da escolha do veiculo a negociacao, com orientacao clara</h2>
+            <h2>Da escolha do produto ao atendimento, com orientação clara</h2>
           </div>
         </div>
         <BenefitGrid />
@@ -260,35 +255,35 @@ function Home() {
       <section className="final-cta" aria-labelledby="final-cta-title">
         <div className="final-cta-inner">
           <div className="final-cta-copy">
-            <span className="eyebrow">Digital Veiculos</span>
-            <h2 id="final-cta-title">Encontre seu proximo veiculo sem perder tempo.</h2>
+            <span className="eyebrow">GN Sports</span>
+            <h2 id="final-cta-title">Encontre sua próxima camisa ou item esportivo sem perder tempo.</h2>
             <p>
-              Conte o que voce procura e receba uma orientacao objetiva para comparar
-              modelos, condicoes e proximos passos com seguranca.
+              Conte o time, seleção, tamanho ou modalidade que você procura e receba
+              atendimento direto para conferir disponibilidade.
             </p>
             <div className="final-cta-points" aria-label="Vantagens do atendimento">
-              <span>Curadoria da frota</span>
-              <span>Duvidas respondidas</span>
-              <span>Negociacao guiada</span>
+              <span>Curadoria do catálogo</span>
+              <span>Tamanhos conferidos</span>
+              <span>Pedido pelo WhatsApp</span>
             </div>
           </div>
 
           <div className="final-cta-contact">
             <span>Atendimento direto</span>
             <strong>Fale com a equipe e avance com clareza.</strong>
-            <p>Sem formulario longo. A conversa ja comeca pelo veiculo e pela sua necessidade.</p>
+            <p>Sem formulário longo. A conversa já começa pelo produto e pelo tamanho que você precisa.</p>
             <div className="final-cta-actions">
               <a
                 className="button whatsapp-button final-cta-whatsapp"
-                href={`https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(settings.default_message || 'Ola! Quero saber mais sobre os veiculos da Digital Veiculos.')}`}
+                href={`https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(settings.default_message || 'Olá! Quero saber mais sobre os produtos da GN Sports.')}`}
                 target="_blank"
                 rel="noreferrer"
               >
                 <IconWhatsapp />
                 Chamar no WhatsApp
               </a>
-              <Link className="button secondary final-cta-secondary" to="/veiculos">
-                Ver frota
+              <Link className="button secondary final-cta-secondary" to="/produtos">
+                Ver produtos
               </Link>
             </div>
           </div>

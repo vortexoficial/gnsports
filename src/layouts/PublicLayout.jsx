@@ -59,7 +59,7 @@ function PublicLayout() {
     event.preventDefault()
     const params = new URLSearchParams()
     if (search.trim()) params.set('q', search.trim())
-    navigate(`/veiculos?${params.toString()}`)
+    navigate(`/produtos?${params.toString()}`)
     setMenuOpen(false)
   }
 
@@ -85,8 +85,8 @@ function PublicLayout() {
                 type="search"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
-                placeholder="Buscar veiculos..."
-                aria-label="Buscar veiculos"
+                placeholder="Buscar produtos..."
+                aria-label="Buscar produtos"
               />
             </form>
 
@@ -120,19 +120,19 @@ function PublicLayout() {
             <nav
               id="public-menu"
               className={menuOpen ? 'site-nav open' : 'site-nav'}
-              aria-label="Navegacao publica"
+              aria-label="Navegação pública"
             >
               <NavLink to="/" end onClick={() => setMenuOpen(false)}>
-                Inicio
+                Início
               </NavLink>
-              <NavLink to="/veiculos" onClick={() => setMenuOpen(false)}>
-                Veiculos
+              <NavLink to="/produtos" onClick={() => setMenuOpen(false)}>
+                Produtos
               </NavLink>
-              <NavLink to="/carros" onClick={() => setMenuOpen(false)}>
-                Carros
+              <NavLink to="/camisas" onClick={() => setMenuOpen(false)}>
+                Camisas
               </NavLink>
-              <NavLink to="/motos" onClick={() => setMenuOpen(false)}>
-                Motos
+              <NavLink to="/esportes" onClick={() => setMenuOpen(false)}>
+                Esportes
               </NavLink>
               <NavLink to="/blog" onClick={() => setMenuOpen(false)}>
                 Blog
@@ -184,7 +184,7 @@ function PublicLayout() {
               )}
             </Link>
             <strong className="footer-brand-name">{settings.store_name}</strong>
-            <p className="footer-brand-desc">Veiculos selecionados, atendimento direto e compra sem complicacao.</p>
+            <p className="footer-brand-desc">Camisas de times, seleções e itens esportivos com atendimento direto.</p>
             <div className="footer-socials">
               {supportLink ? (
                 <a href={supportLink} className="footer-social" aria-label="WhatsApp" target="_blank" rel="noreferrer">
@@ -201,20 +201,20 @@ function PublicLayout() {
 
           <div className="footer-col">
             <span className="footer-col-label">Loja</span>
-            <Link to="/veiculos">Todos os veiculos</Link>
-            <Link to="/carros">Carros</Link>
-            <Link to="/motos">Motos</Link>
+            <Link to="/produtos">Todos os produtos</Link>
+            <Link to="/camisas">Camisas</Link>
+            <Link to="/esportes">Esportes</Link>
             <Link to="/ofertas?sort=promocoes">Ofertas</Link>
           </div>
 
           <div className="footer-col">
-            <span className="footer-col-label">Conteudo</span>
+            <span className="footer-col-label">Conteúdo</span>
             <Link to="/blog">Blog</Link>
           </div>
 
           <div className="footer-col footer-cta-col">
             <span className="footer-col-label">Atendimento</span>
-            <p>Atendimento consultivo pelo WhatsApp. Sem filas, sem formulario complicado.</p>
+            <p>Atendimento pelo WhatsApp para conferir tamanhos, disponibilidade e pedidos.</p>
             {supportLink ? (
               <a href={supportLink} className="button whatsapp-button footer-cta-btn" target="_blank" rel="noreferrer">
                 <IconWhatsapp />
@@ -226,7 +226,7 @@ function PublicLayout() {
 
         <div className="footer-bottom">
           <span>(c) {new Date().getFullYear()} {settings.store_name}. Todos os direitos reservados.</span>
-          <span className="footer-bottom-note">Atendimento e negociacao pelo WhatsApp, sem checkout online.</span>
+          <span className="footer-bottom-note">Atendimento e pedidos pelo WhatsApp, sem checkout online.</span>
         </div>
         <div className="footer-dev">
           <hr className="footer-dev-line" />

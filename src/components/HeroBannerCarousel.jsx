@@ -166,53 +166,54 @@ function HeroBannerCarousel({ banners = [], autoplayDelay = 5500 }) {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      <div
-        className="hero-banner-track"
-        style={trackStyle}
-        onTransitionEnd={handleTransitionEnd}
-      >
-        {extendedSlides.map((banner, index) => {
-          const desktopImage = getDesktopImage(banner)
-          const mobileImage  = getMobileImage(banner)
-          const desktopWebp  = getLocalWebpImage(desktopImage)
-          const mobileWebp   = getLocalWebpImage(mobileImage)
-          const title        = banner.title || `Banner ${index + 1}`
+      <div className="hero-banner-viewport">
+        <div
+          className="hero-banner-track"
+          style={trackStyle}
+          onTransitionEnd={handleTransitionEnd}
+        >
+          {extendedSlides.map((banner, index) => {
+            const desktopImage = getDesktopImage(banner)
+            const mobileImage  = getMobileImage(banner)
+            const desktopWebp  = getLocalWebpImage(desktopImage)
+            const mobileWebp   = getLocalWebpImage(mobileImage)
+            const title        = banner.title || `Banner ${index + 1}`
 
-          return (
-            <article
-              key={`${banner.id}-${index}`}
-              className="hero-banner-slide"
-              aria-hidden={index !== trackIndex}
-              style={{ width: `${100 / total}%`, flex: `0 0 ${100 / total}%` }}
-            >
-              <picture>
-                {mobileWebp ? (
-                  <source type="image/webp" media="(max-width: 767px)" srcSet={mobileWebp} />
-                ) : null}
-                <source media="(max-width: 767px)" srcSet={mobileImage} />
-                {desktopWebp ? (
-                  <source type="image/webp" media="(min-width: 768px)" srcSet={desktopWebp} />
-                ) : null}
-                <source media="(min-width: 768px)" srcSet={desktopImage || mobileImage} />
-                <img
-                  src={desktopImage || mobileImage}
-                  alt={title}
-                  loading={index <= 1 ? 'eager' : 'lazy'}
-                  fetchPriority={index === 1 ? 'high' : 'auto'}
-                  decoding="async"
-                  style={{
-                    '--desktop-position': banner.desktop_position || 'center center',
-                    '--mobile-position':  banner.mobile_position  || 'center center',
-                  }}
-                />
-              </picture>
-            </article>
-          )
-        })}
-      </div>
+            return (
+              <article
+                key={`${banner.id}-${index}`}
+                className="hero-banner-slide"
+                aria-hidden={index !== trackIndex}
+                style={{ width: `${100 / total}%`, flex: `0 0 ${100 / total}%` }}
+              >
+                <picture>
+                  {mobileWebp ? (
+                    <source type="image/webp" media="(max-width: 767px)" srcSet={mobileWebp} />
+                  ) : null}
+                  <source media="(max-width: 767px)" srcSet={mobileImage} />
+                  {desktopWebp ? (
+                    <source type="image/webp" media="(min-width: 768px)" srcSet={desktopWebp} />
+                  ) : null}
+                  <source media="(min-width: 768px)" srcSet={desktopImage || mobileImage} />
+                  <img
+                    src={desktopImage || mobileImage}
+                    alt={title}
+                    loading={index <= 1 ? 'eager' : 'lazy'}
+                    fetchPriority={index === 1 ? 'high' : 'auto'}
+                    decoding="async"
+                    style={{
+                      '--desktop-position': banner.desktop_position || 'center center',
+                      '--mobile-position':  banner.mobile_position  || 'center center',
+                    }}
+                  />
+                </picture>
+              </article>
+            )
+          })}
+        </div>
 
-      {hasMultiple ? (
-        <>
+        {hasMultiple ? (
+          <>
           <button
             className="hero-banner-arrow previous"
             type="button"
@@ -229,7 +230,11 @@ function HeroBannerCarousel({ banners = [], autoplayDelay = 5500 }) {
           >
             <CarouselChevron direction="next" />
           </button>
+          </>
+        ) : null}
+      </div>
 
+      {hasMultiple ? (
           <div className="hero-banner-bullets" role="tablist" aria-label="Selecionar banner">
             {activeBanners.map((banner, index) => (
               <button
@@ -243,7 +248,6 @@ function HeroBannerCarousel({ banners = [], autoplayDelay = 5500 }) {
               />
             ))}
           </div>
-        </>
       ) : null}
     </section>
   )

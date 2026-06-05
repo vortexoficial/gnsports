@@ -46,9 +46,9 @@ function BlogPage() {
   return (
     <main className="page">
       <div className="page-heading">
-        <span className="eyebrow">Conteudo</span>
+        <span className="eyebrow">Conteúdo</span>
         <h1>Blog</h1>
-        <p>Dicas, novidades e oportunidades do mercado automotivo.</p>
+        <p>Dicas, novidades e orientações para escolher camisas e itens esportivos.</p>
       </div>
 
       {loading ? <Loading /> : null}
@@ -57,7 +57,7 @@ function BlogPage() {
       {!loading && !posts.length ? (
         <EmptyState
           title="Nenhum artigo publicado"
-          message="Em breve novos conteudos por aqui."
+          message="Em breve novos conteúdos por aqui."
         />
       ) : null}
 

@@ -93,7 +93,7 @@ function AdminCategories() {
   async function handleDelete(id) {
     const confirmed = await confirm({
       title: 'Excluir categoria?',
-      message: 'Veiculos vinculados podem ficar sem categoria apos essa remocao.',
+      message: 'Produtos vinculados podem ficar sem categoria apos essa remocao.',
       confirmLabel: 'Excluir',
       tone: 'danger',
     })
@@ -161,7 +161,7 @@ function AdminCategories() {
               <FormStatus error={error} success={success} />
               <div className="form-actions">
                 <button className="button" type="submit" disabled={saving}>
-                  {saving ? 'Salvando...' : isEditing ? 'Salvar edicao' : 'Criar categoria'}
+                  {saving ? 'Salvando...' : isEditing ? 'Salvar edição' : 'Criar categoria'}
                 </button>
                 {isEditing ? (
                   <button className="button secondary" type="button" onClick={() => setForm(emptyCategory)}>

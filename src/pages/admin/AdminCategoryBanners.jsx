@@ -109,7 +109,7 @@ function SlotCard({ slot, onSaved }) {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Ex.: Carros"
+              placeholder="Ex.: Camisas"
               disabled={saving}
             />
           </label>
@@ -118,7 +118,7 @@ function SlotCard({ slot, onSaved }) {
             <input
               value={linkTo}
               onChange={(e) => setLinkTo(e.target.value)}
-              placeholder="/carros"
+              placeholder="/camisas"
               disabled={saving}
             />
           </label>
@@ -171,7 +171,7 @@ function AdminCategoryBanners() {
           <span className="eyebrow">Home</span>
           <h1>Banners de Categoria</h1>
           <p className="admin-page-desc">
-            4 slots fixos na secao "Escolha sua categoria". Os titulos e descricoes aparecem automaticamente sobre cada banner.
+            4 slots fixos na seção "Escolha sua categoria". O nome aparece em destaque sobre cada banner.
           </p>
         </div>
         {!loading && slots.length > 0 ? (
@@ -188,7 +188,7 @@ function AdminCategoryBanners() {
 
       {!loading && !error && slots.length === 0 ? (
         <div className="panel empty-panel">
-          Tabela nao encontrada. Execute o SQL de configuracao no Supabase.
+          Tabela não encontrada. Execute o SQL de configuração no Supabase.
         </div>
       ) : null}
 

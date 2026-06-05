@@ -62,19 +62,19 @@ function AdminLogin() {
         <div className="login-brand-glow" />
         <div className="login-brand-lines" />
         <div className="login-brand-inner">
-          <img src="/novalogo.svg" alt="Digital Veiculos" className="login-logo" />
+          <img src="/logo.png" alt="GN Sports" className="login-logo" />
           <div className="login-brand-copy">
             <span className="eyebrow">Painel Administrativo</span>
-            <p>Gerencie veiculos, categorias, banners e configuracoes da sua loja.</p>
+            <p>Gerencie produtos, categorias, banners e configurações da sua loja.</p>
           </div>
           <div className="login-brand-badge">
             <IconShield />
-            Area restrita
+            Área restrita
           </div>
         </div>
       </div>
 
-      {/* Painel do formulario */}
+      {/* Painel do formulário */}
       <div className="login-form-side">
         <form className="login-form" onSubmit={handleSubmit} noValidate>
           <div className="login-form-header">

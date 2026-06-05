@@ -1,5 +1,5 @@
 import { getClient, isMissingTable, unwrap, unwrapMaybe } from './helpers.js'
-import { DEMO_POSTS } from '../data/demoVehicles.js'
+import { DEMO_POSTS } from '../data/demoSports.js'
 
 const DEMO_POST_BASE_DATE = Date.UTC(2026, 4, 28, 12, 0, 0)
 
@@ -57,7 +57,7 @@ function mergeWithDemoPosts(posts, limit = 50) {
 
 function throwMissingBlogTable(error) {
   if (isMissingTable(error, 'blog_posts')) {
-    throw new Error('A tabela blog_posts ainda nao existe no Supabase. Rode o schema.sql atualizado no SQL Editor.')
+    throw new Error('A tabela blog_posts ainda não existe no Supabase. Rode o schema-sports.sql no SQL Editor.')
   }
 
   throw new Error(error.message)

@@ -111,13 +111,13 @@ function IcoClose() {
 }
 
 const adminLinks = [
-  { to: '/admin', label: 'Visao Geral', icon: <IcoDashboard />, end: true },
-  { to: '/admin/veiculos', label: 'Veiculos', icon: <IcoVehicles /> },
+  { to: '/admin', label: 'Visão Geral', icon: <IcoDashboard />, end: true },
+  { to: '/admin/produtos', label: 'Produtos', icon: <IcoVehicles /> },
   { to: '/admin/categorias', label: 'Categorias', icon: <IcoCategorias /> },
   { to: '/admin/blog', label: 'Blog', icon: <IcoBlog /> },
   { to: '/admin/banners', label: 'Banners', icon: <IcoBanners /> },
   { to: '/admin/banners-categorias', label: 'Banners Categoria', icon: <IcoCatBanners /> },
-  { to: '/admin/configuracoes', label: 'Configuracoes', icon: <IcoConfig /> },
+  { to: '/admin/configuracoes', label: 'Configurações', icon: <IcoConfig /> },
 ]
 
 function SidebarContent({ user, signOut }) {
@@ -126,10 +126,10 @@ function SidebarContent({ user, signOut }) {
     <>
       <div className="admin-sidebar-top">
         <div className="admin-brand">
-          <img src="/novalogo.svg" alt="Digital Veiculos" className="admin-brand-logo" />
+          <img src="/logo.png" alt="GN Sports" className="admin-brand-logo" />
         </div>
 
-        <nav className="admin-nav" aria-label="Navegacao administrativa">
+        <nav className="admin-nav" aria-label="Navegação administrativa">
           <span className="admin-nav-section">Menu</span>
           {adminLinks.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.end} className="admin-nav-item">
@@ -199,7 +199,7 @@ function AdminLayout() {
         >
           <IcoMenu />
         </button>
-        <img src="/novalogo.svg" alt="Digital Veiculos Admin" className="admin-topbar-logo" />
+        <img src="/logo.png" alt="GN Sports Admin" className="admin-topbar-logo" />
         <div className="admin-topbar-right">
           <div className="admin-topbar-avatar">{initial}</div>
           <button className="admin-topbar-signout" type="button" onClick={signOut} aria-label="Sair da conta">

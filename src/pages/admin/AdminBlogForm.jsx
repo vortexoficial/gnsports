@@ -18,7 +18,7 @@ function slugify(str) {
   return str
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
@@ -30,8 +30,11 @@ function wrapSelection(ref, before, after, placeholder = 'texto') {
   const end = el.selectionEnd
   const selected = el.value.substring(start, end) || placeholder
   const next = el.value.substring(0, start) + before + selected + after + el.value.substring(end)
-  const cursorEnd = start + before.length + selected.length + after.length
-  return { next, cursor: [start + before.length, start + before.length + selected.length], cursorEnd }
+
+  return {
+    next,
+    cursor: [start + before.length, start + before.length + selected.length],
+  }
 }
 
 function EditorToolbar({ editorRef, onUpdate }) {
@@ -84,8 +87,8 @@ function EditorToolbar({ editorRef, onUpdate }) {
       <button type="button" className="editor-tb-btn" title="Título H2" onClick={() => wrap('<h2>', '</h2>', 'Título')}>H2</button>
       <button type="button" className="editor-tb-btn" title="Título H3" onClick={() => wrap('<h3>', '</h3>', 'Subtítulo')}>H3</button>
       <div className="editor-tb-sep" />
-      <button type="button" className="editor-tb-btn" title="Parágrafo" onClick={() => wrap('<p>', '</p>', 'parágrafo')}>¶</button>
-      <button type="button" className="editor-tb-btn" title="Citação" onClick={() => wrap('<blockquote>', '</blockquote>', 'citação')}>❝</button>
+      <button type="button" className="editor-tb-btn" title="Parágrafo" onClick={() => wrap('<p>', '</p>', 'parágrafo')}>P</button>
+      <button type="button" className="editor-tb-btn" title="Citação" onClick={() => wrap('<blockquote>', '</blockquote>', 'citação')}>"</button>
       <div className="editor-tb-sep" />
       <button type="button" className="editor-tb-btn" title="Lista" onClick={() => insertBlock('<ul>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>')}>UL</button>
       <button type="button" className="editor-tb-btn" title="Lista numerada" onClick={() => insertBlock('<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>')}>OL</button>
@@ -97,8 +100,8 @@ function EditorToolbar({ editorRef, onUpdate }) {
         pre
       </button>
       <div className="editor-tb-sep" />
-      <button type="button" className="editor-tb-btn" title="Link" onClick={insertLink}>🔗</button>
-      <button type="button" className="editor-tb-btn" title="Imagem" onClick={insertImage}>🖼</button>
+      <button type="button" className="editor-tb-btn" title="Link" onClick={insertLink}>Link</button>
+      <button type="button" className="editor-tb-btn" title="Imagem" onClick={insertImage}>Img</button>
     </div>
   )
 }
@@ -181,7 +184,7 @@ function AdminBlogForm() {
         </div>
         <div className="admin-page-heading-actions">
           <button className="button secondary small blog-back-button" type="button" onClick={() => navigate('/admin/blog')}>
-            ← Voltar
+            Voltar
           </button>
         </div>
       </div>

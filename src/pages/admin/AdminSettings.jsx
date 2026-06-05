@@ -60,7 +60,7 @@ function AdminSettings() {
   function validateSettings() {
     if (!settings.store_name.trim()) return 'Informe o nome da loja.'
     if (!/^\d{12,13}$/.test(settings.whatsapp_number || '')) {
-      return 'Use o WhatsApp no formato 55DDDNUMERO, sem espacos ou simbolos.'
+      return 'Use o WhatsApp no formato 55DDDNUMERO, sem espaços ou símbolos.'
     }
     return ''
   }
@@ -75,7 +75,7 @@ function AdminSettings() {
     try {
       const saved = await saveStoreSettings(settings)
       setSettings(saved)
-      setSuccess('Configuracoes salvas com sucesso.')
+      setSuccess('Configurações salvas com sucesso.')
     } catch (err) {
       setError(err.message)
     } finally {
@@ -90,7 +90,7 @@ function AdminSettings() {
       <div className="admin-page-heading">
         <div>
           <span className="eyebrow">Loja</span>
-          <h1>Configuracoes</h1>
+          <h1>Configurações</h1>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ function AdminSettings() {
               <input
                 value={settings.store_name}
                 onChange={(e) => updateField('store_name', e.target.value)}
-                placeholder="Ex.: Digital Veiculos"
+                placeholder="Ex.: GN Sports"
                 required
               />
             </label>
@@ -111,7 +111,7 @@ function AdminSettings() {
               <input
                 value={settings.logo_url || ''}
                 onChange={(e) => updateField('logo_url', e.target.value)}
-                placeholder="/novalogo.svg ou https://..."
+                placeholder="/logo.png ou https://..."
               />
             </label>
           </div>
@@ -132,7 +132,7 @@ function AdminSettings() {
                 placeholder="5511999999999"
                 required
               />
-              <span className="field-hint">Formato: 55 + DDD + numero, sem espacos. Ex: 5511918334855</span>
+              <span className="field-hint">Formato: 55 + DDD + número, sem espaços. Ex: 5522992846915</span>
             </label>
             <label>
               Instagram
@@ -144,12 +144,12 @@ function AdminSettings() {
             </label>
           </div>
           <label>
-            Mensagem padrao do WhatsApp
+            Mensagem padrão do WhatsApp
             <textarea
               value={settings.default_message || ''}
               onChange={(e) => updateField('default_message', e.target.value)}
               rows={2}
-              placeholder="Ola! Quero saber mais sobre os veiculos..."
+              placeholder="Olá! Quero saber mais sobre os produtos..."
             />
           </label>
         </SettingsSection>
@@ -157,20 +157,20 @@ function AdminSettings() {
         <SettingsSection icon={<IcoPromo />} number="03" title="Ofertas">
           <div className="form-grid">
             <label className="full-field">
-              Titulo da secao de ofertas
+              Título da seção de ofertas
               <input
                 value={settings.promo_title || ''}
                 onChange={(e) => updateField('promo_title', e.target.value)}
-                placeholder="Ex.: Veiculos em destaque"
+                placeholder="Ex.: Produtos em destaque"
               />
             </label>
             <label className="full-field">
-              Texto da secao de ofertas
+              Texto da seção de ofertas
               <textarea
                 value={settings.promo_text || ''}
                 onChange={(e) => updateField('promo_text', e.target.value)}
                 rows={2}
-                placeholder="Breve texto exibido na secao de ofertas..."
+                placeholder="Breve texto exibido na seção de ofertas..."
               />
             </label>
           </div>
@@ -179,7 +179,7 @@ function AdminSettings() {
         <div className="settings-footer">
           <FormStatus error={error} success={success} />
           <button className="button" type="submit" disabled={saving}>
-            {saving ? 'Salvando...' : 'Salvar configuracoes'}
+            {saving ? 'Salvando...' : 'Salvar configurações'}
           </button>
         </div>
       </form>

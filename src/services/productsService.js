@@ -4,7 +4,7 @@ import {
   DEMO_PRODUCTS,
   LEGACY_DEMO_CATEGORY_SLUGS,
   LEGACY_DEMO_PRODUCT_SLUGS,
-} from '../data/demoVehicles.js'
+} from '../data/demoSports.js'
 import { getClient, isMissingColumn, unwrap, unwrapMaybe } from './helpers.js'
 
 const PRODUCT_SELECT = `

@@ -16,5 +16,5 @@ export function createWhatsappLink(phone, message) {
 export function buildProductWhatsappMessage(product, productUrl) {
   const price = product?.promo_price || product?.price
 
-  return `Ola! Tenho interesse no veiculo: ${product?.name || ''}. Valor: ${formatCurrency(price)}. Link: ${productUrl}`
+  return `Olá! Tenho interesse no produto: ${product?.name || ''}. Valor: ${formatCurrency(price)}. Link: ${productUrl}`
 }

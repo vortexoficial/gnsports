@@ -1,16 +1,16 @@
 ﻿import { useState } from 'react'
 import { formatCurrency } from '../utils/formatters.js'
 
-const FALLBACK_WHATSAPP = '5511918334855'
+const FALLBACK_WHATSAPP = '5522992846915'
 
 function buildOrderMessage(product, form) {
   const price = product.promo_price || product.price
   const comp = form.complemento ? ` - ${form.complemento}` : ''
 
   return [
-    `*INTERESSE - Digital Veiculos*`,
+    `*INTERESSE - GN Sports*`,
     ``,
-    `*Veiculo:* ${product.name}`,
+    `*Produto:* ${product.name}`,
     `*Valor anunciado:* ${formatCurrency(price)}`,
     ``,
     `*Dados para atendimento*`,
@@ -22,7 +22,7 @@ function buildOrderMessage(product, form) {
     `${form.bairro} - ${form.cidade}/${form.estado.toUpperCase()}`,
     `CEP: ${form.cep}`,
     ``,
-    `Ola! Gostaria de saber mais detalhes, disponibilidade e formas de negociacao.`,
+    `Olá! Gostaria de saber mais detalhes, disponibilidade, tamanhos e formas de pedido.`,
   ].join('\n')
 }
 
@@ -85,7 +85,7 @@ function CheckoutModal({ product, whatsappNumber, onClose }) {
                 value={form.nome}
                 onChange={handleChange}
                 required
-                placeholder="Joao Silva"
+                placeholder="João Silva"
                 autoComplete="name"
               />
             </label>
@@ -158,7 +158,7 @@ function CheckoutModal({ product, whatsappNumber, onClose }) {
                 value={form.bairro}
                 onChange={handleChange}
                 required
-                placeholder="Jardim America"
+                placeholder="Jardim América"
               />
             </label>
           </div>
@@ -171,7 +171,7 @@ function CheckoutModal({ product, whatsappNumber, onClose }) {
                 value={form.cidade}
                 onChange={handleChange}
                 required
-                placeholder="Sao Paulo"
+                placeholder="São Paulo"
                 autoComplete="address-level2"
               />
             </label>

@@ -14,27 +14,28 @@ import {
 } from '../../utils/formatters.js'
 
 const TYPE_ROUTES = {
-  suplemento: '/carros',
-  vestuario: '/motos',
-  acessorio: '/veiculos?tipo=acessorio',
-  outro: '/veiculos?tipo=outro',
+  suplemento: '/camisas',
+  vestuario: '/esportes',
+  acessorio: '/produtos?tipo=acessorio',
+  outro: '/produtos?tipo=outro',
 }
 
 const SEGMENTS = [
   {
     type: 'suplemento',
-    title: 'Carros',
-    subtitle: 'Sedans, hatches, SUVs e picapes para comparar com calma.',
+    title: 'Camisas',
+    subtitle: 'Clubes, seleções, retrôs e modelos para torcer com estilo.',
   },
   {
-    type: 'vestuario',
-    title: 'Motos',
-    subtitle: 'Opcoes para cidade, viagem, economia e lazer.',
+    type: 'collections',
+    title: 'Coleções',
+    subtitle: 'Camisas retrô, goleiro, treino e edições especiais.',
+    route: '/camisas',
   },
   {
     type: 'offers',
     title: 'Ofertas',
-    subtitle: 'Veiculos com preco promocional em destaque.',
+    subtitle: 'Produtos com preço promocional em destaque.',
     route: '/ofertas?sort=promocoes',
   },
 ]
@@ -86,23 +87,22 @@ function getInventorySummary(products) {
 
   return {
     total: products.length,
-    cars: products.filter((product) => product.type === 'suplemento').length,
-    motos: products.filter((product) => product.type === 'vestuario').length,
+    shirts: products.filter((product) => product.type === 'suplemento').length,
     offers: products.filter((product) => product.promo_price).length,
     cheapest: prices.length ? Math.min(...prices) : 0,
   }
 }
 
 function formatResultCount(count) {
-  if (count === 1) return '1 veiculo encontrado'
-  return `${count} veiculos encontrados`
+  if (count === 1) return '1 produto encontrado'
+  return `${count} produtos encontrados`
 }
 
 function VehicleOverview({ summary }) {
   const metrics = [
-    { label: 'Frota ativa', value: summary.total || '-' },
-    { label: 'Carros', value: summary.cars || '-' },
-    { label: 'Motos', value: summary.motos || '-' },
+    { label: 'Catálogo ativo', value: summary.total || '-' },
+    { label: 'Camisas', value: summary.shirts || '-' },
+    { label: 'Ofertas', value: summary.offers || '-' },
     {
       label: 'A partir de',
       value: summary.cheapest ? formatCurrencyNoCents(summary.cheapest) : '-',
@@ -113,21 +113,21 @@ function VehicleOverview({ summary }) {
 
   return (
     <>
-      <section className="vehicle-overview" aria-label="Resumo da frota">
+      <section className="vehicle-overview" aria-label="Resumo do catálogo">
         <div className="vehicle-overview-copy">
-          <span className="eyebrow">Central da frota</span>
-          <h2>Comece pelo tipo de veiculo e aprofunde a busca depois.</h2>
+          <span className="eyebrow">Central do catálogo</span>
+          <h2>Comece pelo tipo de produto e aprofunde a busca depois.</h2>
           <p>
-            A pagina de veiculos agora funciona como uma visao geral: mostra o tamanho da
-            frota, separa carros e motos, destaca ofertas e leva cada pessoa para a
+            A página de produtos funciona como uma visão geral: mostra o tamanho do
+            catálogo, organiza as coleções de camisas, destaca ofertas e leva cada pessoa para a
             listagem certa.
           </p>
           <div className="vehicle-overview-actions">
-            <Link className="button" to="/carros">
-              Ver carros
+            <Link className="button" to="/camisas">
+              Ver camisas
             </Link>
-            <Link className="button secondary" to="/motos">
-              Ver motos
+            <Link className="button secondary" to="/ofertas?sort=promocoes">
+              Ver ofertas
             </Link>
           </div>
         </div>
@@ -150,12 +150,8 @@ function VehicleOverview({ summary }) {
       <section className="vehicle-segment-grid" aria-label="Atalhos por segmento">
         {SEGMENTS.map((segment) => {
           const count =
-            segment.type === 'offers'
-              ? summary.offers
-              : segment.type === 'suplemento'
-              ? summary.cars
-              : summary.motos
-          const route = segment.route || TYPE_ROUTES[segment.type] || '/veiculos'
+            segment.type === 'offers' ? summary.offers : summary.shirts
+          const route = segment.route || TYPE_ROUTES[segment.type] || '/produtos'
 
           return (
             <Link className="vehicle-segment-card" key={segment.type} to={route}>
@@ -167,7 +163,7 @@ function VehicleOverview({ summary }) {
                 <span>{segment.subtitle}</span>
               </span>
               <span className="vehicle-segment-meta">
-                {count || 0} {count === 1 ? 'opcao' : 'opcoes'}
+                {count || 0} {count === 1 ? 'opção' : 'opções'}
               </span>
             </Link>
           )
@@ -261,12 +257,12 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
 
   const heading =
     lockedType === 'suplemento'
-      ? { title: 'Carros', subtitle: 'Sedans, hatches, SUVs e outras oportunidades selecionadas para voce comparar pelo WhatsApp.' }
+      ? { title: 'Camisas', subtitle: 'Camisas de clubes, seleções e modelos especiais para você conferir pelo WhatsApp.' }
       : lockedType === 'vestuario'
-      ? { title: 'Motos', subtitle: 'Modelos revisados para quem busca agilidade, economia e bom atendimento.' }
+      ? { title: 'Esportes', subtitle: 'Itens esportivos para treino, jogo e rotina, com atendimento direto.' }
       : pageVariant === 'offers'
-      ? { title: 'Ofertas', subtitle: 'Oportunidades com preco promocional para voce chamar no WhatsApp e negociar rapido.' }
-      : { title: 'Veiculos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar duvidas ou negociar.' }
+      ? { title: 'Ofertas', subtitle: 'Oportunidades com preço promocional para você chamar no WhatsApp e pedir rápido.' }
+      : { title: 'Produtos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar dúvidas ou pedir.' }
 
   const hasActiveCatalogFilters = Boolean(
     filters.search ||
@@ -280,12 +276,12 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
     <main className="page">
       <section className="page-heading catalog-heading">
         <div>
-          <span className="eyebrow">Digital Veiculos</span>
+          <span className="eyebrow">GN Sports</span>
           <h1>{heading.title}</h1>
           <p>{heading.subtitle}</p>
         </div>
         {lockedType ? (
-          <div className="catalog-heading-card" aria-label={`Pagina de ${heading.title}`}>
+          <div className="catalog-heading-card" aria-label={`Página de ${heading.title}`}>
             <span>Segmento</span>
             <strong>{getProductTypeLabel(lockedType)}</strong>
           </div>
@@ -319,8 +315,8 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
       ) : null}
       {!loading && !filteredProducts.length ? (
         <EmptyState
-          title={pageVariant === 'offers' ? 'Nenhuma oferta encontrada' : 'Nenhum veiculo encontrado'}
-          message={pageVariant === 'offers' ? 'Cadastre um preco promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos veiculos no painel.'}
+          title={pageVariant === 'offers' ? 'Nenhuma oferta encontrada' : 'Nenhum produto encontrado'}
+          message={pageVariant === 'offers' ? 'Cadastre um preço promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos produtos no painel.'}
         />
       ) : null}
 

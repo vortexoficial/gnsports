@@ -2,13 +2,13 @@
 
 export const DEFAULT_SETTINGS = {
   id: null,
-  store_name: 'Digital Veiculos',
-  whatsapp_number: '5511918334855',
-  logo_url: '/novalogo.svg',
+  store_name: 'GN Sports',
+  whatsapp_number: '5522992846915',
+  logo_url: '/logo.png',
   instagram_url: '',
-  default_message: 'Ola! Quero saber mais sobre os veiculos disponiveis.',
-  promo_title: 'Veiculos em destaque',
-  promo_text: 'Fale no WhatsApp e confira os veiculos disponiveis hoje.',
+  default_message: 'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
+  promo_title: 'Camisas em destaque',
+  promo_text: 'Fale no WhatsApp e confira produtos, tamanhos e ofertas disponíveis hoje.',
 }
 
 function normalizeSettings(settings) {

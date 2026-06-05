@@ -53,7 +53,7 @@ function ImageUploader({
       <div className="product-image-grid">
         {images.map((image, index) => (
           <div key={`${image.type}-${image.index}`} className="product-image-tile">
-            <img src={image.src} alt={`Imagem do veiculo ${index + 1}`} />
+            <img src={image.src} alt={`Imagem do produto ${index + 1}`} />
             <span>{index === 0 ? 'Principal' : `Foto ${index + 1}`}</span>
             <button
               type="button"

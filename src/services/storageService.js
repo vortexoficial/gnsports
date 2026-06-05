@@ -22,7 +22,7 @@ function loadLocalImage(file) {
     }
     image.onerror = () => {
       URL.revokeObjectURL(url)
-      reject(new Error('Nao foi possivel otimizar a imagem.'))
+      reject(new Error('Não foi possível otimizar a imagem.'))
     }
     image.src = url
   })

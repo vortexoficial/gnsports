@@ -28,13 +28,13 @@ export function formatNumber(value, digits = 0) {
 
 export function getProductTypeLabel(type) {
   const labels = {
-    suplemento: 'Carro',
-    vestuario: 'Moto',
-    acessorio: 'Acessorio',
+    suplemento: 'Camisa de time',
+    vestuario: 'Moda esportiva',
+    acessorio: 'Acessório',
     outro: 'Outro',
   }
 
-  return labels[type] || type || 'Veiculo'
+  return labels[type] || type || 'Produto'
 }
 
 export function splitByComma(value) {

@@ -127,11 +127,11 @@ function ProductCarousel({ products = [], whatsappNumber = '' }) {
   return (
     <div className="product-carousel">
       {n > 1 ? (
-        <div className="product-carousel-controls" aria-label="Navegar veiculos">
+        <div className="product-carousel-controls" aria-label="Navegar produtos">
           <button
             className="product-carousel-control previous"
             type="button"
-            aria-label="Veiculos anteriores"
+            aria-label="Produtos anteriores"
             onClick={() => { setAnimated(true); setTrackIndex(p => p - perPage) }}
           >
             <ChevronIcon direction="previous" />
@@ -139,7 +139,7 @@ function ProductCarousel({ products = [], whatsappNumber = '' }) {
           <button
             className="product-carousel-control next"
             type="button"
-            aria-label="Proximos veiculos"
+            aria-label="Próximos produtos"
             onClick={() => { setAnimated(true); setTrackIndex(p => p + perPage) }}
           >
             <ChevronIcon direction="next" />

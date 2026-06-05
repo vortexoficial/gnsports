@@ -79,8 +79,8 @@ function AdminProducts() {
 
   async function handleDelete(id) {
     const confirmed = await confirm({
-      title: 'Excluir veiculo?',
-      message: 'Essa acao remove o veiculo permanentemente do catalogo.',
+      title: 'Excluir produto?',
+      message: 'Essa ação remove o produto permanentemente do catálogo.',
       confirmLabel: 'Excluir',
       tone: 'danger',
     })
@@ -97,9 +97,9 @@ function AdminProducts() {
 
   async function handleCreateDemoProducts() {
     const confirmed = await confirm({
-      eyebrow: 'Veiculos demo',
-      title: 'Criar veiculos demo?',
-      message: 'Serao criados ou atualizados veiculos e categorias de teste.',
+      eyebrow: 'Produtos demo',
+      title: 'Criar produtos demo?',
+      message: 'Serão criados ou atualizados produtos esportivos e categorias de teste.',
       confirmLabel: 'Criar demo',
       tone: 'primary',
     })
@@ -109,7 +109,7 @@ function AdminProducts() {
     setSuccess('')
     try {
       const saved = await createDemoProductBase()
-      setSuccess(`${saved.length} veiculos demo criados com sucesso.`)
+      setSuccess(`${saved.length} produtos demo criados com sucesso.`)
       await loadProducts()
     } catch (err) {
       setError(err.message)
@@ -122,14 +122,14 @@ function AdminProducts() {
     <section className="admin-page">
       <div className="admin-page-heading">
         <div>
-          <span className="eyebrow">Catalogo</span>
-          <h1>Veiculos</h1>
+          <span className="eyebrow">Catálogo</span>
+          <h1>Produtos</h1>
         </div>
         <div className="admin-page-heading-actions">
           <button className="button secondary small" type="button" onClick={handleCreateDemoProducts} disabled={seeding}>
             {seeding ? 'Criando...' : 'Demo'}
           </button>
-          <Link className="button" to="/admin/veiculos/novo">+ Novo veiculo</Link>
+          <Link className="button" to="/admin/produtos/novo">+ Novo produto</Link>
         </div>
       </div>
 
@@ -143,13 +143,13 @@ function AdminProducts() {
         <table className="products-table">
           <thead>
             <tr>
-              <th>Veiculo</th>
+              <th>Produto</th>
               <th className="col-type">Tipo / Cat.</th>
-              <th className="col-price">Preco</th>
+              <th className="col-price">Preço</th>
               <th className="col-stock">Estoque</th>
               <th className="col-status">Status</th>
               <th className="col-featured">Destaque</th>
-              <th className="col-actions">Acoes</th>
+              <th className="col-actions">Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -200,7 +200,7 @@ function AdminProducts() {
                   </button>
                 </td>
                 <td className="col-actions">
-                  <Link className="action-btn edit" to={`/admin/veiculos/editar/${product.id}`} title="Editar">
+                  <Link className="action-btn edit" to={`/admin/produtos/editar/${product.id}`} title="Editar">
                     <IcoEdit />
                   </Link>
                   <button className="action-btn delete" type="button" onClick={() => handleDelete(product.id)} title="Excluir">
@@ -211,7 +211,7 @@ function AdminProducts() {
             ))}
             {!filteredProducts.length && !loading ? (
               <tr>
-                <td colSpan="7" className="empty-row">Nenhum veiculo encontrado.</td>
+                <td colSpan="7" className="empty-row">Nenhum produto encontrado.</td>
               </tr>
             ) : null}
           </tbody>

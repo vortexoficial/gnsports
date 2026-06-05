@@ -50,9 +50,9 @@ function CategoryPage() {
     return (
       <main className="page">
         <EmptyState
-          title="Categoria nao encontrada"
+          title="Categoria não encontrada"
           message="Volte para a loja e escolha uma categoria ativa."
-          action={<Link to="/veiculos">Ver veiculos</Link>}
+          action={<Link to="/produtos">Ver produtos</Link>}
         />
       </main>
     )
@@ -63,13 +63,13 @@ function CategoryPage() {
       <section className="page-heading">
         <span className="eyebrow">Categoria</span>
         <h1>{category.name}</h1>
-        <p>Veiculos ativos vinculados a esta categoria.</p>
+        <p>Produtos ativos vinculados a esta categoria.</p>
       </section>
 
       {!products.length ? (
         <EmptyState
-          title="Sem veiculos nesta categoria"
-          message="Cadastre ou ative veiculos no painel administrativo."
+          title="Sem produtos nesta categoria"
+          message="Cadastre ou ative produtos no painel administrativo."
         />
       ) : null}
 

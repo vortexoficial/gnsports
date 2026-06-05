@@ -1,48 +1,42 @@
-﻿# Digital Veiculos - Vitrine Automotiva com Dashboard
+﻿# GN Sports - Loja esportiva com dashboard
 
-Projeto React + Vite para vitrine de veiculos com painel administrativo, Supabase Auth, banco PostgreSQL, Storage para imagens e atendimento via WhatsApp. Nao ha checkout online: o fluxo principal e consultar/negociar o veiculo diretamente pelo WhatsApp.
+Projeto React + Vite para vitrine de produtos esportivos com painel administrativo, Supabase Auth, banco PostgreSQL, Storage para imagens e atendimento via WhatsApp.
 
-## Principais recursos
+## O que mudou
 
-- Site publico com home, categorias, listagem, detalhe de veiculo e blog.
-- Rotas publicas principais: `/`, `/veiculos`, `/carros`, `/motos`, `/veiculo/:slug`, `/categoria/:slug`, `/blog`.
-- Dashboard administrativo protegido por login.
-- CRUD de veiculos, categorias, banners, banners de categoria, blog e configuracoes da loja.
-- Configuracao de logo, WhatsApp, Instagram e textos promocionais.
-- Seed demo automotivo para categorias, veiculos e posts.
+- A loja agora trabalha com camisas de times, clubes, seleções e itens esportivos.
+- As rotas principais sao `/`, `/produtos`, `/camisas`, `/esportes`, `/ofertas`, `/produto/:slug`, `/categoria/:slug` e `/blog`.
+- O painel usa `/admin/produtos` para cadastro e gestão do catálogo.
+- A logo padrao passou a ser `/logo.png`.
+- O banco antigo de veículos não foi alterado. As credenciais antigas foram preservadas em `.env.vehicles.local.backup`.
 
-## Ambiente
+## Banco novo
 
-Crie ou atualize `.env.local` com:
+1. Crie um novo projeto no Supabase para a loja sports.
+2. Abra o SQL Editor do Supabase novo.
+3. Execute `supabase/schema-sports.sql`.
+4. Crie um usuario em Authentication. O trigger cria o perfil admin automaticamente.
+5. Copie a URL e as chaves publicas do projeto novo para `.env.local`.
+
+Exemplo:
 
 ```env
-VITE_SUPABASE_URL=https://seu-projeto.supabase.co
-VITE_SUPABASE_PUBLISHABLE_KEY=sua-chave-publica
-SUPABASE_SERVICE_ROLE_KEY=sua-service-role-key
+VITE_SUPABASE_URL=https://seu-projeto-sports.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=sua_chave_publishable
+VITE_SUPABASE_ANON_KEY=sua_chave_anon_public
+VITE_SUPABASE_PRODUCT_IMAGE_BUCKET=product-images
+VITE_APP_URL=http://localhost:5173
 ```
 
-A `SUPABASE_SERVICE_ROLE_KEY` so e necessaria para rodar os scripts de seed pelo terminal.
-
-## Comandos
+## Rodar local
 
 ```bash
 npm install
 npm run dev
-npm run build
-node scripts/seed.js
 ```
 
-## Supabase
+## Observacoes
 
-- Use `supabase/schema.sql` para preparar o banco completo.
-- Use `supabase/seed-demo-content.sql` ou `scripts/seed.sql` para inserir conteudo demo automotivo.
-- O app ainda mantem valores tecnicos legados de tipo (`suplemento`, `vestuario`, `acessorio`, `outro`) para compatibilidade com bases existentes. Na interface, eles aparecem como Carro, Moto, Acessorio automotivo e Outro.
-
-## WhatsApp
-
-Cadastre o numero no formato `55DDDNUMERO`, sem espacos. Cada veiculo gera uma mensagem com nome, valor anunciado e link da pagina.
-
-## Plano de migracao
-
-O acompanhamento da migracao esta em `PLANO_MIGRACAO_DIGITAL_VEICULOS.md`.
-
+- Banners continuam editaveis pelo painel e podem ser trocados manualmente.
+- O seed sports cria categorias, produtos demo, variantes de tamanho, settings e posts iniciais.
+- O arquivo `supabase/schema.sql` antigo foi mantido como referencia/legado; use `supabase/schema-sports.sql` no banco novo.

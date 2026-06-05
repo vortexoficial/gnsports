@@ -4,8 +4,8 @@ import { PRODUCT_TYPES } from '../data/options.js'
 
 const sortOptions = [
   { value: 'recentes', label: 'Mais recentes' },
-  { value: 'menor_preco', label: 'Menor preco' },
-  { value: 'maior_preco', label: 'Maior preco' },
+  { value: 'menor_preco', label: 'Menor preço' },
+  { value: 'maior_preco', label: 'Maior preço' },
   { value: 'promocoes', label: 'Ofertas' },
 ]
 
@@ -153,7 +153,7 @@ function ProductFilters({
               {showSearch ? (
                 <DrawerSection title="Busca" defaultOpen>
                   <label className="filter-search-field">
-                    Veiculo ou marca
+                    Produto ou marca
                     <div className="filter-search-wrap">
                       <svg className="filter-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <circle cx="11" cy="11" r="7" />

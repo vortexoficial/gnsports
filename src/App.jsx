@@ -20,14 +20,14 @@ import NotFoundPage from './pages/public/NotFoundPage.jsx'
 import ProductDetailPage from './pages/public/ProductDetailPage.jsx'
 import ProductsPage from './pages/public/ProductsPage.jsx'
 
-function LegacyVehicleRedirect({ admin = false, edit = false }) {
+function LegacyProductRedirect({ admin = false, edit = false }) {
   const { slug, id } = useParams()
 
   if (admin) {
-    return <Navigate to={edit ? `/admin/veiculos/editar/${id}` : '/admin/veiculos'} replace />
+    return <Navigate to={edit ? `/admin/produtos/editar/${id}` : '/admin/produtos'} replace />
   }
 
-  return <Navigate to={slug ? `/veiculo/${slug}` : '/veiculos'} replace />
+  return <Navigate to={slug ? `/produto/${slug}` : '/produtos'} replace />
 }
 
 function App() {
@@ -35,15 +35,17 @@ function App() {
     <Routes>
       <Route element={<PublicLayout />}>
         <Route index element={<Home />} />
-        <Route path="veiculos" element={<ProductsPage key="veiculos" pageVariant="overview" />} />
-        <Route path="carros" element={<ProductsPage key="carros" lockedType="suplemento" />} />
-        <Route path="motos" element={<ProductsPage key="motos" lockedType="vestuario" />} />
+        <Route path="produtos" element={<ProductsPage key="produtos" pageVariant="overview" />} />
+        <Route path="camisas" element={<ProductsPage key="camisas" lockedType="suplemento" />} />
+        <Route path="esportes" element={<ProductsPage key="esportes" lockedType="vestuario" />} />
         <Route path="ofertas" element={<ProductsPage key="ofertas" pageVariant="offers" />} />
-        <Route path="produtos" element={<Navigate to="/veiculos" replace />} />
-        <Route path="suplementos" element={<Navigate to="/carros" replace />} />
-        <Route path="vestuario" element={<Navigate to="/motos" replace />} />
-        <Route path="veiculo/:slug" element={<ProductDetailPage />} />
-        <Route path="produto/:slug" element={<LegacyVehicleRedirect />} />
+        <Route path="veiculos" element={<Navigate to="/produtos" replace />} />
+        <Route path="carros" element={<Navigate to="/camisas" replace />} />
+        <Route path="motos" element={<Navigate to="/esportes" replace />} />
+        <Route path="suplementos" element={<Navigate to="/camisas" replace />} />
+        <Route path="vestuario" element={<Navigate to="/esportes" replace />} />
+        <Route path="produto/:slug" element={<ProductDetailPage />} />
+        <Route path="veiculo/:slug" element={<LegacyProductRedirect />} />
         <Route path="categoria/:slug" element={<CategoryPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="blog/:slug" element={<BlogPostPage />} />
@@ -59,12 +61,12 @@ function App() {
         }
       >
         <Route index element={<AdminDashboard />} />
-        <Route path="veiculos" element={<AdminProducts />} />
-        <Route path="veiculos/novo" element={<AdminProductForm />} />
-        <Route path="veiculos/editar/:id" element={<AdminProductForm />} />
-        <Route path="produtos" element={<Navigate to="/admin/veiculos" replace />} />
-        <Route path="produtos/novo" element={<Navigate to="/admin/veiculos/novo" replace />} />
-        <Route path="produtos/editar/:id" element={<LegacyVehicleRedirect admin edit />} />
+        <Route path="produtos" element={<AdminProducts />} />
+        <Route path="produtos/novo" element={<AdminProductForm />} />
+        <Route path="produtos/editar/:id" element={<AdminProductForm />} />
+        <Route path="veiculos" element={<Navigate to="/admin/produtos" replace />} />
+        <Route path="veiculos/novo" element={<Navigate to="/admin/produtos/novo" replace />} />
+        <Route path="veiculos/editar/:id" element={<LegacyProductRedirect admin edit />} />
         <Route path="categorias" element={<AdminCategories />} />
         <Route path="blog" element={<AdminBlog />} />
         <Route path="blog/novo" element={<AdminBlogForm />} />

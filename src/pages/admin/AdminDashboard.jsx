@@ -108,7 +108,7 @@ function AdminDashboard() {
       <div className="admin-page-heading">
         <div>
           <span className="eyebrow">Dashboard</span>
-          <h1>Visao geral</h1>
+          <h1>Visão geral</h1>
         </div>
         <div className="admin-page-heading-actions">
           <a className="button secondary dashboard-store-button" href="/" target="_blank" rel="noreferrer">
@@ -127,7 +127,7 @@ function AdminDashboard() {
             <h2 className="dash-analytics-title">Visitantes unicos</h2>
           </div>
           {!hasVisitorData ? (
-            <span className="dash-analytics-pill">Nao configurado</span>
+            <span className="dash-analytics-pill">Não configurado</span>
           ) : null}
         </div>
         <div className="dash-visitor-row">
@@ -144,9 +144,9 @@ function AdminDashboard() {
 
       {summary ? (
         <div className="dash-content-section">
-          <span className="eyebrow">Conteudo da loja</span>
+          <span className="eyebrow">Conteúdo da loja</span>
           <div className="dash-grid">
-            <DashCard icon={<IcoBox />} label="Veiculos" value={summary.products} to="/admin/veiculos" accent="orange" />
+            <DashCard icon={<IcoBox />} label="Produtos" value={summary.products} to="/admin/produtos" accent="orange" />
             <DashCard icon={<IcoTag />} label="Categorias" value={summary.categories} to="/admin/categorias" accent="blue" />
             <DashCard icon={<IcoImage />} label="Banners" value={summary.banners} to="/admin/banners" accent="green" />
             <DashCard icon={<IcoPost />} label="Artigos do blog" value={summary.posts} to="/admin/blog" accent="purple" />

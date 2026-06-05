@@ -59,28 +59,28 @@ function IcoHandshake() {
 const benefits = [
   {
     icon: <IcoProfileSearch />,
-    title: 'Entendimento do perfil',
-    desc: 'A gente considera sua rotina, orcamento e prioridade: familia, trabalho, economia, conforto ou desempenho.',
+    title: 'Busca pelo seu time',
+    desc: 'A gente ajuda a encontrar clube, seleção, modelo, tamanho e estilo que combinam com o que você procura.',
   },
   {
     icon: <IcoCarFront />,
-    title: 'Veiculos com informacao clara',
-    desc: 'Carros e motos aparecem com fotos, categoria, marca e preco para voce comparar sem perder tempo.',
+    title: 'Produtos com informação clara',
+    desc: 'Camisas e itens esportivos aparecem com fotos, categoria, marca e preço para você comparar sem perder tempo.',
   },
   {
     icon: <IcoClipboardCheck />,
-    title: 'Comparacao orientada',
-    desc: 'Voce recebe ajuda para avaliar modelo, versao, conservacao, custo de uso e o que vale perguntar antes de decidir.',
+    title: 'Comparação orientada',
+    desc: 'Você recebe ajuda para conferir tamanho, tecido, acabamento, disponibilidade e o que vale perguntar antes de pedir.',
   },
   {
     icon: <IcoFilePayment />,
-    title: 'Documentacao e pagamento',
-    desc: 'Orientacao sobre documentos, debitos, entrada, financiamento e proximos passos da transferencia.',
+    title: 'Pedido e pagamento',
+    desc: 'Orientação sobre disponibilidade, envio, retirada, pagamento e próximos passos do pedido.',
   },
   {
     icon: <IcoHandshake />,
-    title: 'Negociacao pelo WhatsApp',
-    desc: 'Sem checkout confuso: escolha o veiculo, tire duvidas e avance a negociacao com atendimento direto.',
+    title: 'Atendimento pelo WhatsApp',
+    desc: 'Sem checkout confuso: escolha o produto, tire dúvidas e avance o pedido com atendimento direto.',
   },
 ]
 
