@@ -19,7 +19,6 @@ function IconInstagram() {
   )
 }
 import BrandLogo from '../components/BrandLogo.jsx'
-import MusicPlayer from '../components/MusicPlayer.jsx'
 import OptimizedImage from '../components/OptimizedImage.jsx'
 import { isSupabaseConfigured } from '../config/env.js'
 import { DEFAULT_SETTINGS, getStoreSettings } from '../services/settingsService.js'
@@ -159,7 +158,6 @@ function PublicLayout() {
 
       {/* Floating action buttons */}
       <div className="fabs">
-        <MusicPlayer />
         {supportLink ? (
           <a
             className="fab-whatsapp"

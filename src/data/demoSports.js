@@ -9,28 +9,9 @@ export const DEMO_CATEGORIES = [
   { name: 'Treino e casual', slug: 'treino-e-casual', type: 'vestuario', is_active: true },
 ]
 
-export const LEGACY_DEMO_CATEGORY_SLUGS = [
-  'sedans',
-  'hatches',
-  'suvs',
-  'picapes',
-  'motos',
-  'acessorios-automotivos',
-]
+export const LEGACY_DEMO_CATEGORY_SLUGS = []
 
 export const LEGACY_DEMO_PRODUCT_SLUGS = [
-  'honda-civic-exl-2020',
-  'toyota-corolla-xei-2021',
-  'chevrolet-cruze-ltz-2020',
-  'jeep-compass-longitude-2022',
-  'fiat-toro-volcano-2022',
-  'ford-ranger-stormtrak-2023',
-  'yamaha-mt-03-abs-2024',
-  'bmw-r-1200-gs-2018',
-  'ducati-monster-696-2012',
-  'triumph-tiger-800-xc-2015',
-  'honda-cbr-500r-2018',
-  'kawasaki-z650-abs-2020',
   'camisa-brasil-i-torcedor-2026',
   'camisa-argentina-home-torcedor',
   'camisa-flamengo-rubro-negra',

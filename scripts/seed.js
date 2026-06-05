@@ -1,5 +1,5 @@
 /**
- * Digital Veiculos seed script.
+ * GN Sports seed script.
  * Prerequisite: add SUPABASE_SERVICE_ROLE_KEY to .env.local.
  * Run: node scripts/seed.js
  */
@@ -14,7 +14,7 @@ import {
   DEMO_PRODUCTS,
   LEGACY_DEMO_CATEGORY_SLUGS,
   LEGACY_DEMO_PRODUCT_SLUGS,
-} from '../src/data/demoVehicles.js'
+} from '../src/data/demoSports.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const raw = readFileSync(join(ROOT, '.env.local'), 'utf8')
@@ -47,29 +47,33 @@ const POSTS = DEMO_POSTS.map((post) => ({
 }))
 
 async function deactivateLegacyRows() {
-  const { error: categoryError } = await db
-    .from('categories')
-    .update({ is_active: false })
-    .in('slug', LEGACY_DEMO_CATEGORY_SLUGS)
-  if (categoryError) console.warn('Categorias antigas:', categoryError.message)
+  if (LEGACY_DEMO_CATEGORY_SLUGS.length) {
+    const { error: categoryError } = await db
+      .from('categories')
+      .update({ is_active: false })
+      .in('slug', LEGACY_DEMO_CATEGORY_SLUGS)
+    if (categoryError) console.warn('Categorias antigas:', categoryError.message)
+  }
 
-  const { error: productError } = await db
-    .from('products')
-    .update({ is_active: false, updated_at: new Date().toISOString() })
-    .in('slug', LEGACY_DEMO_PRODUCT_SLUGS)
-  if (productError) console.warn('Produtos antigos:', productError.message)
+  if (LEGACY_DEMO_PRODUCT_SLUGS.length) {
+    const { error: productError } = await db
+      .from('products')
+      .update({ is_active: false, updated_at: new Date().toISOString() })
+      .in('slug', LEGACY_DEMO_PRODUCT_SLUGS)
+    if (productError) console.warn('Produtos antigos:', productError.message)
+  }
 }
 
 async function main() {
   await deactivateLegacyRows()
 
   const { error: settingsError } = await db.from('store_settings').insert({
-    store_name: 'Digital Veiculos',
-    whatsapp_number: '5511918334855',
-    logo_url: '/novalogo.svg',
-    default_message: 'Ola! Quero saber mais sobre os veiculos disponiveis.',
-    promo_title: 'Veiculos em destaque',
-    promo_text: 'Fale no WhatsApp e confira as oportunidades disponiveis hoje.',
+    store_name: 'GN Sports',
+    whatsapp_number: '5522992846915',
+    logo_url: '/logo.png',
+    default_message: 'Ola! Quero saber mais sobre os produtos esportivos disponiveis.',
+    promo_title: 'Camisas em destaque',
+    promo_text: 'Fale no WhatsApp e confira produtos, tamanhos e ofertas disponiveis hoje.',
   })
   if (settingsError) console.warn('Configuracoes:', settingsError.message)
 
@@ -91,7 +95,7 @@ async function main() {
   const { error: postError } = await db.from('blog_posts').upsert(POSTS, { onConflict: 'slug' })
   if (postError) throw postError
 
-  console.log('Seed automotivo concluido com sucesso.')
+  console.log('Seed GN Sports concluido com sucesso.')
 }
 
 main().catch((error) => {

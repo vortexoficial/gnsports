@@ -1,4 +1,4 @@
-ï»¿import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useOutletContext, useSearchParams } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState.jsx'
 import Loading from '../../components/Loading.jsx'
@@ -24,23 +24,23 @@ const SEGMENTS = [
   {
     type: 'suplemento',
     title: 'Camisas',
-    subtitle: 'Clubes, seleÃ§Ãµes, retrÃ´s e modelos para torcer com estilo.',
+    subtitle: 'Clubes, seleções, retrôs e modelos para torcer com estilo.',
   },
   {
     type: 'collections',
-    title: 'ColeÃ§Ãµes',
-    subtitle: 'Camisas retrÃ´, goleiro, treino e ediÃ§Ãµes especiais.',
+    title: 'Coleções',
+    subtitle: 'Camisas retrô, goleiro, treino e edições especiais.',
     route: '/camisas',
   },
   {
     type: 'offers',
     title: 'Ofertas',
-    subtitle: 'Produtos com preÃ§o promocional em destaque.',
+    subtitle: 'Produtos com preço promocional em destaque.',
     route: '/ofertas?sort=promocoes',
   },
 ]
 
-function VehicleSegmentIcon({ type }) {
+function CatalogSegmentIcon({ type }) {
   if (type === 'vestuario') {
     return (
       <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
@@ -98,9 +98,9 @@ function formatResultCount(count) {
   return `${count} produtos encontrados`
 }
 
-function VehicleOverview({ summary }) {
+function CatalogOverview({ summary }) {
   const metrics = [
-    { label: 'CatÃ¡logo ativo', value: summary.total || '-' },
+    { label: 'Catálogo ativo', value: summary.total || '-' },
     { label: 'Camisas', value: summary.shirts || '-' },
     { label: 'Ofertas', value: summary.offers || '-' },
     {
@@ -113,16 +113,16 @@ function VehicleOverview({ summary }) {
 
   return (
     <>
-      <section className="vehicle-overview" aria-label="Resumo do catÃ¡logo">
-        <div className="vehicle-overview-copy">
-          <span className="eyebrow">Central do catÃ¡logo</span>
+      <section className="catalog-overview" aria-label="Resumo do catálogo">
+        <div className="catalog-overview-copy">
+          <span className="eyebrow">Central do catálogo</span>
           <h2>Comece pelo tipo de produto e aprofunde a busca depois.</h2>
           <p>
-            A pÃ¡gina de produtos funciona como uma visÃ£o geral: mostra o tamanho do
-            catÃ¡logo, organiza as coleÃ§Ãµes de camisas, destaca ofertas e leva cada pessoa para a
+            A página de produtos funciona como uma visão geral: mostra o tamanho do
+            catálogo, organiza as coleções de camisas, destaca ofertas e leva cada pessoa para a
             listagem certa.
           </p>
-          <div className="vehicle-overview-actions">
+          <div className="catalog-overview-actions">
             <Link className="button" to="/camisas">
               Ver camisas
             </Link>
@@ -132,12 +132,12 @@ function VehicleOverview({ summary }) {
           </div>
         </div>
 
-        <div className="vehicle-metric-grid">
+        <div className="catalog-metric-grid">
           {metrics.map((metric) => (
-            <div className="vehicle-metric-card" key={metric.label}>
+            <div className="catalog-metric-card" key={metric.label}>
               <span>{metric.label}</span>
               <strong
-                className={`vehicle-metric-value ${metric.valueClassName || ''}`.trim()}
+                className={`catalog-metric-value ${metric.valueClassName || ''}`.trim()}
                 title={metric.title}
               >
                 {metric.value}
@@ -147,23 +147,23 @@ function VehicleOverview({ summary }) {
         </div>
       </section>
 
-      <section className="vehicle-segment-grid" aria-label="Atalhos por segmento">
+      <section className="catalog-segment-grid" aria-label="Atalhos por segmento">
         {SEGMENTS.map((segment) => {
           const count =
             segment.type === 'offers' ? summary.offers : summary.shirts
           const route = segment.route || TYPE_ROUTES[segment.type] || '/produtos'
 
           return (
-            <Link className="vehicle-segment-card" key={segment.type} to={route}>
-              <span className="vehicle-segment-icon">
-                <VehicleSegmentIcon type={segment.type} />
+            <Link className="catalog-segment-card" key={segment.type} to={route}>
+              <span className="catalog-segment-icon">
+                <CatalogSegmentIcon type={segment.type} />
               </span>
-              <span className="vehicle-segment-body">
+              <span className="catalog-segment-body">
                 <strong>{segment.title}</strong>
                 <span>{segment.subtitle}</span>
               </span>
-              <span className="vehicle-segment-meta">
-                {count || 0} {count === 1 ? 'opÃ§Ã£o' : 'opÃ§Ãµes'}
+              <span className="catalog-segment-meta">
+                {count || 0} {count === 1 ? 'opção' : 'opções'}
               </span>
             </Link>
           )
@@ -257,12 +257,12 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
 
   const heading =
     lockedType === 'suplemento'
-      ? { title: 'Camisas', subtitle: 'Camisas de clubes, seleÃ§Ãµes e modelos especiais para vocÃª conferir pelo WhatsApp.' }
+      ? { title: 'Camisas', subtitle: 'Camisas de clubes, seleções e modelos especiais para você conferir pelo WhatsApp.' }
       : lockedType === 'vestuario'
       ? { title: 'Esportes', subtitle: 'Itens esportivos para treino, jogo e rotina, com atendimento direto.' }
       : pageVariant === 'offers'
-      ? { title: 'Ofertas', subtitle: 'Oportunidades com preÃ§o promocional para vocÃª chamar no WhatsApp e pedir rÃ¡pido.' }
-      : { title: 'Produtos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar dÃºvidas ou pedir.' }
+      ? { title: 'Ofertas', subtitle: 'Oportunidades com preço promocional para você chamar no WhatsApp e pedir rápido.' }
+      : { title: 'Produtos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar dúvidas ou pedir.' }
 
   const hasActiveCatalogFilters = Boolean(
     filters.search ||
@@ -281,14 +281,14 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
           <p>{heading.subtitle}</p>
         </div>
         {lockedType ? (
-          <div className="catalog-heading-card" aria-label={`PÃ¡gina de ${heading.title}`}>
+          <div className="catalog-heading-card" aria-label={`Página de ${heading.title}`}>
             <span>Segmento</span>
             <strong>{getProductTypeLabel(lockedType)}</strong>
           </div>
         ) : null}
       </section>
 
-      {showOverview ? <VehicleOverview summary={summary} /> : null}
+      {showOverview ? <CatalogOverview summary={summary} /> : null}
 
       <ProductFilters
         categories={visibleCategories}
@@ -316,7 +316,7 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
       {!loading && !filteredProducts.length ? (
         <EmptyState
           title={pageVariant === 'offers' ? 'Nenhuma oferta encontrada' : 'Nenhum produto encontrado'}
-          message={pageVariant === 'offers' ? 'Cadastre um preÃ§o promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos produtos no painel.'}
+          message={pageVariant === 'offers' ? 'Cadastre um preço promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos produtos no painel.'}
         />
       ) : null}
 

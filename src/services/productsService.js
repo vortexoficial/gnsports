@@ -84,14 +84,18 @@ export async function listProducts({
 export async function createDemoProductBase() {
   const client = getClient()
   const now = new Date().toISOString()
-  await client
-    .from('categories')
-    .update({ is_active: false })
-    .in('slug', LEGACY_DEMO_CATEGORY_SLUGS)
-  await client
-    .from('products')
-    .update({ is_active: false, updated_at: now })
-    .in('slug', LEGACY_DEMO_PRODUCT_SLUGS)
+  if (LEGACY_DEMO_CATEGORY_SLUGS.length) {
+    await client
+      .from('categories')
+      .update({ is_active: false })
+      .in('slug', LEGACY_DEMO_CATEGORY_SLUGS)
+  }
+  if (LEGACY_DEMO_PRODUCT_SLUGS.length) {
+    await client
+      .from('products')
+      .update({ is_active: false, updated_at: now })
+      .in('slug', LEGACY_DEMO_PRODUCT_SLUGS)
+  }
 
   const categories = unwrap(
     await client

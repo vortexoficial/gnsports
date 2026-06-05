@@ -111,7 +111,7 @@ function AdminSettings() {
               <input
                 value={settings.logo_url || ''}
                 onChange={(e) => updateField('logo_url', e.target.value)}
-                placeholder="/logo.webp ou https://..."
+                placeholder="/logo.png ou https://..."
               />
             </label>
           </div>

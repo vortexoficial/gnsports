@@ -23,7 +23,7 @@ function IcoDashboard() {
   )
 }
 
-function IcoVehicles() {
+function IcoProducts() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <path d="M21 8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16V8z" />
@@ -112,7 +112,7 @@ function IcoClose() {
 
 const adminLinks = [
   { to: '/admin', label: 'Visão Geral', icon: <IcoDashboard />, end: true },
-  { to: '/admin/produtos', label: 'Produtos', icon: <IcoVehicles /> },
+  { to: '/admin/produtos', label: 'Produtos', icon: <IcoProducts /> },
   { to: '/admin/categorias', label: 'Categorias', icon: <IcoCategorias /> },
   { to: '/admin/blog', label: 'Blog', icon: <IcoBlog /> },
   { to: '/admin/banners', label: 'Banners', icon: <IcoBanners /> },
@@ -126,7 +126,7 @@ function SidebarContent({ user, signOut }) {
     <>
       <div className="admin-sidebar-top">
         <div className="admin-brand">
-          <img src="/logo.webp" alt="GN Sports" className="admin-brand-logo" />
+          <img src="/logo.png" alt="GN Sports" className="admin-brand-logo" />
         </div>
 
         <nav className="admin-nav" aria-label="Navegação administrativa">
@@ -199,7 +199,7 @@ function AdminLayout() {
         >
           <IcoMenu />
         </button>
-        <img src="/logo.webp" alt="GN Sports Admin" className="admin-topbar-logo" />
+        <img src="/logo.png" alt="GN Sports Admin" className="admin-topbar-logo" />
         <div className="admin-topbar-right">
           <div className="admin-topbar-avatar">{initial}</div>
           <button className="admin-topbar-signout" type="button" onClick={signOut} aria-label="Sair da conta">

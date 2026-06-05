@@ -1,4 +1,4 @@
-﻿import { Navigate, Route, Routes, useParams } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import AdminLayout from './layouts/AdminLayout.jsx'
 import PublicLayout from './layouts/PublicLayout.jsx'
 import ProtectedRoute from './routes/ProtectedRoute.jsx'
@@ -20,16 +20,6 @@ import NotFoundPage from './pages/public/NotFoundPage.jsx'
 import ProductDetailPage from './pages/public/ProductDetailPage.jsx'
 import ProductsPage from './pages/public/ProductsPage.jsx'
 
-function LegacyProductRedirect({ admin = false, edit = false }) {
-  const { slug, id } = useParams()
-
-  if (admin) {
-    return <Navigate to={edit ? `/admin/produtos/editar/${id}` : '/admin/produtos'} replace />
-  }
-
-  return <Navigate to={slug ? `/produto/${slug}` : '/produtos'} replace />
-}
-
 function App() {
   return (
     <Routes>
@@ -39,13 +29,7 @@ function App() {
         <Route path="camisas" element={<ProductsPage key="camisas" lockedType="suplemento" />} />
         <Route path="esportes" element={<ProductsPage key="esportes" lockedType="vestuario" />} />
         <Route path="ofertas" element={<ProductsPage key="ofertas" pageVariant="offers" />} />
-        <Route path="veiculos" element={<Navigate to="/produtos" replace />} />
-        <Route path="carros" element={<Navigate to="/camisas" replace />} />
-        <Route path="motos" element={<Navigate to="/esportes" replace />} />
-        <Route path="suplementos" element={<Navigate to="/camisas" replace />} />
-        <Route path="vestuario" element={<Navigate to="/esportes" replace />} />
         <Route path="produto/:slug" element={<ProductDetailPage />} />
-        <Route path="veiculo/:slug" element={<LegacyProductRedirect />} />
         <Route path="categoria/:slug" element={<CategoryPage />} />
         <Route path="blog" element={<BlogPage />} />
         <Route path="blog/:slug" element={<BlogPostPage />} />
@@ -64,9 +48,6 @@ function App() {
         <Route path="produtos" element={<AdminProducts />} />
         <Route path="produtos/novo" element={<AdminProductForm />} />
         <Route path="produtos/editar/:id" element={<AdminProductForm />} />
-        <Route path="veiculos" element={<Navigate to="/admin/produtos" replace />} />
-        <Route path="veiculos/novo" element={<Navigate to="/admin/produtos/novo" replace />} />
-        <Route path="veiculos/editar/:id" element={<LegacyProductRedirect admin edit />} />
         <Route path="categorias" element={<AdminCategories />} />
         <Route path="blog" element={<AdminBlog />} />
         <Route path="blog/novo" element={<AdminBlogForm />} />

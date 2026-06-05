@@ -128,16 +128,16 @@ function Home() {
           </div>
         ) : (
           <div className="category-grid premium-categories">
-            <Link className="category-link category-featured" to="/camisas" style={{ '--cat-img': 'url(/cat-vestuario.webp)' }}>
+            <Link className="category-link category-featured" to="/camisas" style={{ '--cat-img': 'url(/demo-shirts/camisa-rubro-negra-demo.png)' }}>
               <strong>Camisas</strong>
             </Link>
-            <Link className="category-link category-featured" to="/esportes" style={{ '--cat-img': 'url(/cat-produtos.webp)' }}>
+            <Link className="category-link category-featured" to="/esportes" style={{ '--cat-img': 'url(/demo-sports-items/bola-campo-gold-demo.png)' }}>
               <strong>Esportes</strong>
             </Link>
-            <Link className="category-link category-featured" to="/produtos" style={{ '--cat-img': 'url(/cat-suplementos.webp)' }}>
+            <Link className="category-link category-featured" to="/produtos" style={{ '--cat-img': 'url(/demo-sports-items/luva-goleiro-gold-demo.png)' }}>
               <strong>Produtos</strong>
             </Link>
-            <Link className="category-link category-featured" to="/ofertas?sort=promocoes" style={{ '--cat-img': 'url(/vehicle-offers.svg)' }}>
+            <Link className="category-link category-featured" to="/ofertas?sort=promocoes" style={{ '--cat-img': 'url(/demo-shirts/camisa-branca-dourada-demo.png)' }}>
               <strong>Ofertas</strong>
             </Link>
           </div>
