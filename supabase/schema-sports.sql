@@ -388,8 +388,8 @@ set name = excluded.name,
 insert into public.home_category_banners (slot, name, image_url, link_to)
 values
   (1, 'Novidades', '/demo-shirts/camisa-rubro-negra-demo.png', '/produtos'),
-  (2, 'Seleções', '/demo-shirts/camisa-brasil-amarela-demo.png', '/categoria/camisas-de-selecoes'),
-  (3, 'Itens', '/demo-sports-items/bola-campo-gold-demo.png', '/categoria/acessorios-esportivos'),
+  (2, 'Camisas', '/demo-shirts/camisa-brasil-amarela-demo.png', '/camisas'),
+  (3, 'Esportes', '/demo-sports-items/bola-campo-gold-demo.png', '/esportes'),
   (4, 'Ofertas', '/demo-shirts/camisa-branca-dourada-demo.png', '/ofertas?sort=promocoes')
 on conflict (slot) do update
 set name = excluded.name,

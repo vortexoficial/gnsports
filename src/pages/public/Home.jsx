@@ -13,14 +13,21 @@ import { listPosts } from '../../services/blogService.js'
 import { listHomeCategoryBanners } from '../../services/homeCategoryBannersService.js'
 import { listProducts } from '../../services/productsService.js'
 
+const CATEGORY_SLOT_COPY = {
+  1: { title: 'Novidades', linkTo: '/produtos' },
+  2: { title: 'Camisas', linkTo: '/camisas' },
+  3: { title: 'Esportes', linkTo: '/esportes' },
+  4: { title: 'Ofertas', linkTo: '/ofertas?sort=promocoes' },
+}
+
 const CATEGORY_BANNER_COPY = [
   ['novidades', 'Novidades'],
-  ['selecoes', 'Seleções'],
-  ['clubes', 'Clubes'],
-  ['retro', 'Retro'],
   ['esportes', 'Esportes'],
   ['esportivos', 'Esportes'],
   ['camisas', 'Camisas'],
+  ['selecoes', 'Camisas'],
+  ['clubes', 'Camisas'],
+  ['retro', 'Camisas'],
   ['produtos', 'Produtos'],
   ['ofertas', 'Ofertas'],
 ]
@@ -38,7 +45,8 @@ function findCategoryBannerCopy(value) {
 }
 
 function getCategoryBannerCopy(slot) {
-  if (Number(slot.slot) === 1) return 'Novidades'
+  const slotCopy = CATEGORY_SLOT_COPY[Number(slot.slot)]
+  if (slotCopy) return slotCopy.title
 
   return (
     findCategoryBannerCopy(slot.name) ||
@@ -49,7 +57,9 @@ function getCategoryBannerCopy(slot) {
 }
 
 function getCategoryBannerLink(slot) {
-  if (Number(slot.slot) === 1) return '/produtos'
+  const slotCopy = CATEGORY_SLOT_COPY[Number(slot.slot)]
+  if (slotCopy) return slotCopy.linkTo
+
   return slot.link_to || '/produtos'
 }
 
