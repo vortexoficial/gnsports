@@ -24,18 +24,18 @@ const SEGMENTS = [
   {
     type: 'suplemento',
     title: 'Camisas',
-    subtitle: 'Clubes, seleções, retrôs e modelos para torcer com estilo.',
+    subtitle: 'Clubes, seleÃ§Ãµes, retrÃ´s e modelos para torcer com estilo.',
   },
   {
     type: 'collections',
-    title: 'Coleções',
-    subtitle: 'Camisas retrô, goleiro, treino e edições especiais.',
+    title: 'ColeÃ§Ãµes',
+    subtitle: 'Camisas retrÃ´, goleiro, treino e ediÃ§Ãµes especiais.',
     route: '/camisas',
   },
   {
     type: 'offers',
     title: 'Ofertas',
-    subtitle: 'Produtos com preço promocional em destaque.',
+    subtitle: 'Produtos com preÃ§o promocional em destaque.',
     route: '/ofertas?sort=promocoes',
   },
 ]
@@ -100,7 +100,7 @@ function formatResultCount(count) {
 
 function CatalogOverview({ summary }) {
   const metrics = [
-    { label: 'Catálogo ativo', value: summary.total || '-' },
+    { label: 'CatÃ¡logo ativo', value: summary.total || '-' },
     { label: 'Camisas', value: summary.shirts || '-' },
     { label: 'Ofertas', value: summary.offers || '-' },
     {
@@ -113,13 +113,13 @@ function CatalogOverview({ summary }) {
 
   return (
     <>
-      <section className="catalog-overview" aria-label="Resumo do catálogo">
+      <section className="catalog-overview" aria-label="Resumo do catÃ¡logo">
         <div className="catalog-overview-copy">
-          <span className="eyebrow">Central do catálogo</span>
+          <span className="eyebrow">Central do catÃ¡logo</span>
           <h2>Comece pelo tipo de produto e aprofunde a busca depois.</h2>
           <p>
-            A página de produtos funciona como uma visão geral: mostra o tamanho do
-            catálogo, organiza as coleções de camisas, destaca ofertas e leva cada pessoa para a
+            A pÃ¡gina de produtos funciona como uma visÃ£o geral: mostra o tamanho do
+            catÃ¡logo, organiza as coleÃ§Ãµes de camisas, destaca ofertas e leva cada pessoa para a
             listagem certa.
           </p>
           <div className="catalog-overview-actions">
@@ -163,7 +163,7 @@ function CatalogOverview({ summary }) {
                 <span>{segment.subtitle}</span>
               </span>
               <span className="catalog-segment-meta">
-                {count || 0} {count === 1 ? 'opção' : 'opções'}
+                {count || 0} {count === 1 ? 'opÃ§Ã£o' : 'opÃ§Ãµes'}
               </span>
             </Link>
           )
@@ -257,12 +257,12 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
 
   const heading =
     lockedType === 'suplemento'
-      ? { title: 'Camisas', subtitle: 'Camisas de clubes, seleções e modelos especiais para você conferir pelo WhatsApp.' }
+      ? { title: 'Camisas', subtitle: 'Camisas de clubes, seleÃ§Ãµes e modelos especiais para vocÃª conferir pelo WhatsApp.' }
       : lockedType === 'vestuario'
       ? { title: 'Esportes', subtitle: 'Itens esportivos para treino, jogo e rotina, com atendimento direto.' }
       : pageVariant === 'offers'
-      ? { title: 'Ofertas', subtitle: 'Oportunidades com preço promocional para você chamar no WhatsApp e pedir rápido.' }
-      : { title: 'Produtos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar dúvidas ou pedir.' }
+      ? { title: 'Ofertas', subtitle: 'Oportunidades com preÃ§o promocional para vocÃª chamar no WhatsApp e pedir rÃ¡pido.' }
+      : { title: 'Produtos', subtitle: 'Filtre, compare e fale direto pelo WhatsApp para tirar dÃºvidas ou pedir.' }
 
   const hasActiveCatalogFilters = Boolean(
     filters.search ||
@@ -281,7 +281,7 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
           <p>{heading.subtitle}</p>
         </div>
         {lockedType ? (
-          <div className="catalog-heading-card" aria-label={`Página de ${heading.title}`}>
+          <div className="catalog-heading-card" aria-label={`PÃ¡gina de ${heading.title}`}>
             <span>Segmento</span>
             <strong>{getProductTypeLabel(lockedType)}</strong>
           </div>
@@ -316,7 +316,7 @@ function ProductsPage({ lockedType = '', pageVariant = 'catalog' }) {
       {!loading && !filteredProducts.length ? (
         <EmptyState
           title={pageVariant === 'offers' ? 'Nenhuma oferta encontrada' : 'Nenhum produto encontrado'}
-          message={pageVariant === 'offers' ? 'Cadastre um preço promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos produtos no painel.'}
+          message={pageVariant === 'offers' ? 'Cadastre um preÃ§o promocional ou ajuste os filtros.' : 'Ajuste os filtros ou cadastre novos produtos no painel.'}
         />
       ) : null}
 
