@@ -126,7 +126,7 @@ function SidebarContent({ user, signOut }) {
     <>
       <div className="admin-sidebar-top">
         <div className="admin-brand">
-          <img src="/logo.png" alt="GN Sports" className="admin-brand-logo" />
+          <img src="/logo.webp" alt="GN Sports" className="admin-brand-logo" />
         </div>
 
         <nav className="admin-nav" aria-label="Navegação administrativa">
@@ -199,7 +199,7 @@ function AdminLayout() {
         >
           <IcoMenu />
         </button>
-        <img src="/logo.png" alt="GN Sports Admin" className="admin-topbar-logo" />
+        <img src="/logo.webp" alt="GN Sports Admin" className="admin-topbar-logo" />
         <div className="admin-topbar-right">
           <div className="admin-topbar-avatar">{initial}</div>
           <button className="admin-topbar-signout" type="button" onClick={signOut} aria-label="Sair da conta">

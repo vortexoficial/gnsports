@@ -62,7 +62,7 @@ function AdminLogin() {
         <div className="login-brand-glow" />
         <div className="login-brand-lines" />
         <div className="login-brand-inner">
-          <img src="/logo.png" alt="GN Sports" className="login-logo" />
+          <img src="/logo.webp" alt="GN Sports" className="login-logo" />
           <div className="login-brand-copy">
             <span className="eyebrow">Painel Administrativo</span>
             <p>Gerencie produtos, categorias, banners e configurações da sua loja.</p>

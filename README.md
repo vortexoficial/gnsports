@@ -7,7 +7,7 @@ Projeto React + Vite para vitrine de produtos esportivos com painel administrati
 - A loja agora trabalha com camisas de times, clubes, seleções e itens esportivos.
 - As rotas principais sao `/`, `/produtos`, `/camisas`, `/esportes`, `/ofertas`, `/produto/:slug`, `/categoria/:slug` e `/blog`.
 - O painel usa `/admin/produtos` para cadastro e gestão do catálogo.
-- A logo padrao passou a ser `/logo.png`.
+- A logo padrao passou a ser `/logo.webp`.
 - O banco antigo de veículos não foi alterado. As credenciais antigas foram preservadas em `.env.vehicles.local.backup`.
 
 ## Banco novo

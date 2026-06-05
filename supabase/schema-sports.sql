@@ -14,7 +14,7 @@ create table if not exists public.store_settings (
   id uuid primary key default gen_random_uuid(),
   store_name text not null default 'GN Sports',
   whatsapp_number text not null default '5522992846915',
-  logo_url text default '/logo.png',
+  logo_url text default '/logo.webp',
   instagram_url text default '',
   default_message text default 'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
   promo_title text default 'Camisas em destaque',
@@ -363,7 +363,7 @@ insert into public.store_settings (
 values (
   'GN Sports',
   '5522992846915',
-  '/logo.png',
+  '/logo.webp',
   'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
   'Camisas em destaque',
   'Fale no WhatsApp e confira produtos, tamanhos e ofertas disponíveis hoje.',

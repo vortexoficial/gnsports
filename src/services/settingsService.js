@@ -4,7 +4,7 @@ export const DEFAULT_SETTINGS = {
   id: null,
   store_name: 'GN Sports',
   whatsapp_number: '5522992846915',
-  logo_url: '/logo.png',
+  logo_url: '/logo.webp',
   instagram_url: '',
   default_message: 'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
   promo_title: 'Camisas em destaque',
