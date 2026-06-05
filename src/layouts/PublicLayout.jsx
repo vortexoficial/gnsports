@@ -18,10 +18,9 @@ function IconInstagram() {
     </svg>
   )
 }
-import BrandLogo from '../components/BrandLogo.jsx'
 import OptimizedImage from '../components/OptimizedImage.jsx'
 import { isSupabaseConfigured } from '../config/env.js'
-import { DEFAULT_SETTINGS, getStoreSettings } from '../services/settingsService.js'
+import { DEFAULT_SETTINGS, STORE_LOGO_URL, getStoreSettings } from '../services/settingsService.js'
 import { logVisit } from '../services/visitorsService.js'
 import { createWhatsappLink } from '../utils/whatsapp.js'
 
@@ -69,11 +68,7 @@ function PublicLayout() {
         <div className="site-header-inner">
           <div className="site-header-top">
             <Link className="brand" to="/">
-              {settings.logo_url ? (
-                <OptimizedImage src={settings.logo_url} alt={settings.store_name} decoding="async" />
-              ) : (
-                <BrandLogo compact />
-              )}
+              <OptimizedImage src={STORE_LOGO_URL} alt={settings.store_name} decoding="async" />
             </Link>
 
             <form className="header-search" onSubmit={submitSearch}>
@@ -176,16 +171,12 @@ function PublicLayout() {
         <div className="footer-main">
           <div className="footer-brand">
             <Link to="/" className="footer-brand-logo">
-              {settings.logo_url ? (
-                <OptimizedImage
-                  src={settings.logo_url}
-                  alt={settings.store_name}
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <BrandLogo />
-              )}
+              <OptimizedImage
+                src={STORE_LOGO_URL}
+                alt={settings.store_name}
+                loading="lazy"
+                decoding="async"
+              />
             </Link>
             <strong className="footer-brand-name">{settings.store_name}</strong>
             <p className="footer-brand-desc">Camisas de times, seleções e itens esportivos com atendimento direto.</p>

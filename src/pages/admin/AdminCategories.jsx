@@ -93,7 +93,7 @@ function AdminCategories() {
   async function handleDelete(id) {
     const confirmed = await confirm({
       title: 'Excluir categoria?',
-      message: 'Produtos vinculados podem ficar sem categoria apos essa remocao.',
+      message: 'Produtos vinculados podem ficar sem categoria após essa remoção.',
       confirmLabel: 'Excluir',
       tone: 'danger',
     })
@@ -112,7 +112,7 @@ function AdminCategories() {
     <section className="admin-page">
       <div className="admin-page-heading">
         <div>
-          <span className="eyebrow">Catalogo</span>
+          <span className="eyebrow">Catálogo</span>
           <h1>Categorias</h1>
         </div>
       </div>

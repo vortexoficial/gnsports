@@ -71,11 +71,11 @@ async function main() {
     store_name: 'GN Sports',
     whatsapp_number: '5522992846915',
     logo_url: '/logo.png',
-    default_message: 'Ola! Quero saber mais sobre os produtos esportivos disponiveis.',
+    default_message: 'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
     promo_title: 'Camisas em destaque',
-    promo_text: 'Fale no WhatsApp e confira produtos, tamanhos e ofertas disponiveis hoje.',
+    promo_text: 'Fale no WhatsApp e confira produtos, tamanhos e ofertas disponíveis hoje.',
   })
-  if (settingsError) console.warn('Configuracoes:', settingsError.message)
+  if (settingsError) console.warn('Configurações:', settingsError.message)
 
   const { data: cats, error: catError } = await db
     .from('categories')

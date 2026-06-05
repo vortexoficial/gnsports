@@ -17,7 +17,7 @@ function buildOrderMessage(product, form) {
     `*Nome:* ${form.nome}`,
     `*Telefone:* ${form.telefone}`,
     ``,
-    `*Localizacao para atendimento*`,
+    `*Localização para atendimento*`,
     `${form.rua}, ${form.numero}${comp}`,
     `${form.bairro} - ${form.cidade}/${form.estado.toUpperCase()}`,
     `CEP: ${form.cep}`,
@@ -103,7 +103,7 @@ function CheckoutModal({ product, whatsappNumber, onClose }) {
             </label>
           </div>
 
-          <p className="checkout-section-label">Localizacao</p>
+          <p className="checkout-section-label">Localização</p>
 
           <div className="checkout-row checkout-row-addr">
             <label className="checkout-field checkout-field-cep">
@@ -130,7 +130,7 @@ function CheckoutModal({ product, whatsappNumber, onClose }) {
               />
             </label>
             <label className="checkout-field checkout-field-num">
-              <span>Numero</span>
+              <span>Número</span>
               <input
                 name="numero"
                 value={form.numero}

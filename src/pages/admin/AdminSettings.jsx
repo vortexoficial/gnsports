@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from 'react'
 import FormStatus from '../../components/FormStatus.jsx'
 import Loading from '../../components/Loading.jsx'
-import { DEFAULT_SETTINGS, getStoreSettings, saveStoreSettings } from '../../services/settingsService.js'
+import { DEFAULT_SETTINGS, STORE_LOGO_URL, getStoreSettings, saveStoreSettings } from '../../services/settingsService.js'
 
 const IcoStore = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="18" height="18">
@@ -109,17 +109,15 @@ function AdminSettings() {
             <label>
               Logo (URL)
               <input
-                value={settings.logo_url || ''}
-                onChange={(e) => updateField('logo_url', e.target.value)}
-                placeholder="/logo.png ou https://..."
+                value={STORE_LOGO_URL}
+                readOnly
+                placeholder="/logo.png"
               />
             </label>
           </div>
-          {settings.logo_url ? (
-            <div className="settings-logo-preview">
-              <img src={settings.logo_url} alt="Logo" />
-            </div>
-          ) : null}
+          <div className="settings-logo-preview">
+            <img src={STORE_LOGO_URL} alt="Logo" />
+          </div>
         </SettingsSection>
 
         <SettingsSection icon={<IcoWhatsapp />} number="02" title="Contato e redes">

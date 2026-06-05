@@ -30,8 +30,7 @@ function getCategoryBannerCopy(slot) {
     .replace(/[\u0300-\u036f]/g, '')
 
   const match = Object.keys(CATEGORY_BANNER_COPY).find((item) => key.includes(item))
-  const fallback = match ? CATEGORY_BANNER_COPY[match] : CATEGORY_BANNER_COPY.produtos
-  return slot.name || fallback
+  return match ? CATEGORY_BANNER_COPY[match] : slot.name || CATEGORY_BANNER_COPY.produtos
 }
 
 function IconWhatsapp() {

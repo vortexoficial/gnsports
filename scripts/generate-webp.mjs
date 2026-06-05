@@ -36,7 +36,7 @@ async function collectImages(dir) {
 
 async function generateWebp() {
   if (!(await exists(root))) {
-    console.warn(`[webp] Pasta nao encontrada: ${root}`)
+    console.warn(`[webp] Pasta não encontrada: ${root}`)
     return
   }
 

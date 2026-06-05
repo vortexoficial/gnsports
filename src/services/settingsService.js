@@ -1,10 +1,12 @@
-﻿import { getClient, isMissingColumn, unwrap, unwrapMaybe } from './helpers.js'
+import { getClient, isMissingColumn, unwrap, unwrapMaybe } from './helpers.js'
+
+export const STORE_LOGO_URL = '/logo.png'
 
 export const DEFAULT_SETTINGS = {
   id: null,
   store_name: 'GN Sports',
   whatsapp_number: '5522992846915',
-  logo_url: '/logo.png',
+  logo_url: STORE_LOGO_URL,
   instagram_url: '',
   default_message: 'Olá! Quero saber mais sobre os produtos esportivos disponíveis.',
   promo_title: 'Camisas em destaque',
@@ -13,12 +15,11 @@ export const DEFAULT_SETTINGS = {
 
 function normalizeSettings(settings) {
   if (!settings) return DEFAULT_SETTINGS
-  const logoUrl = settings.logo_url === '/logo.webp' ? '/logo.png' : settings.logo_url
 
   return {
     ...DEFAULT_SETTINGS,
     ...settings,
-    logo_url: logoUrl,
+    logo_url: STORE_LOGO_URL,
     instagram_url: settings.instagram_url ?? settings.instagram ?? '',
   }
 }
@@ -27,7 +28,7 @@ function buildSettingsPayload(settings, { legacyInstagram = false } = {}) {
   const payload = {
     store_name: settings.store_name,
     whatsapp_number: settings.whatsapp_number,
-    logo_url: settings.logo_url || null,
+    logo_url: STORE_LOGO_URL,
     instagram_url: settings.instagram_url || '',
     default_message: settings.default_message || '',
     promo_title: settings.promo_title || '',

@@ -124,7 +124,7 @@ function AdminDashboard() {
         <div className="dash-analytics-header">
           <div>
             <span className="eyebrow">Analytics</span>
-            <h2 className="dash-analytics-title">Visitantes unicos</h2>
+            <h2 className="dash-analytics-title">Visitantes únicos</h2>
           </div>
           {!hasVisitorData ? (
             <span className="dash-analytics-pill">Não configurado</span>
