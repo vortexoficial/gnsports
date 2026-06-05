@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import CheckoutModal from './CheckoutModal.jsx'
+import OptimizedImage from './OptimizedImage.jsx'
 import { formatCurrency, getProductTypeLabel } from '../utils/formatters.js'
 
 function getPlaceholderLabel(type) {
@@ -28,7 +29,12 @@ function ProductCard({ product, whatsappNumber = '', showActions = true }) {
       <article className="product-card">
         <Link className="product-card-media" to={`/produto/${product.slug}`}>
           {product.image_url ? (
-            <img src={product.image_url} alt={product.name} loading="lazy" />
+            <OptimizedImage
+              src={product.image_url}
+              alt={product.name}
+              loading="lazy"
+              decoding="async"
+            />
           ) : (
             <div className="product-placeholder">
               <span>{getPlaceholderLabel(product.type)}</span>

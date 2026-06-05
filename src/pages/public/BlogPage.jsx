@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom'
 import EmptyState from '../../components/EmptyState.jsx'
 import Loading from '../../components/Loading.jsx'
+import OptimizedImage from '../../components/OptimizedImage.jsx'
 import { listPosts } from '../../services/blogService.js'
 
 function formatDate(str) {
@@ -16,7 +17,7 @@ function BlogCard({ post }) {
     <Link to={`/blog/${post.slug}`} className="blog-card">
       {post.cover_url ? (
         <div className="blog-card-cover">
-          <img src={post.cover_url} alt={post.title} loading="lazy" />
+          <OptimizedImage src={post.cover_url} alt={post.title} loading="lazy" decoding="async" />
         </div>
       ) : (
         <div className="blog-card-cover blog-card-cover-placeholder" aria-hidden="true" />

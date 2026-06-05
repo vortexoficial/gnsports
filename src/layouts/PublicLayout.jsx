@@ -20,6 +20,7 @@ function IconInstagram() {
 }
 import BrandLogo from '../components/BrandLogo.jsx'
 import MusicPlayer from '../components/MusicPlayer.jsx'
+import OptimizedImage from '../components/OptimizedImage.jsx'
 import { isSupabaseConfigured } from '../config/env.js'
 import { DEFAULT_SETTINGS, getStoreSettings } from '../services/settingsService.js'
 import { logVisit } from '../services/visitorsService.js'
@@ -70,7 +71,7 @@ function PublicLayout() {
           <div className="site-header-top">
             <Link className="brand" to="/">
               {settings.logo_url ? (
-                <img src={settings.logo_url} alt={settings.store_name} />
+                <OptimizedImage src={settings.logo_url} alt={settings.store_name} decoding="async" />
               ) : (
                 <BrandLogo compact />
               )}
@@ -178,7 +179,12 @@ function PublicLayout() {
           <div className="footer-brand">
             <Link to="/" className="footer-brand-logo">
               {settings.logo_url ? (
-                <img src={settings.logo_url} alt={settings.store_name} />
+                <OptimizedImage
+                  src={settings.logo_url}
+                  alt={settings.store_name}
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
                 <BrandLogo />
               )}
@@ -225,13 +231,19 @@ function PublicLayout() {
         </div>
 
         <div className="footer-bottom">
-          <span>(c) {new Date().getFullYear()} {settings.store_name}. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} {settings.store_name}. Todos os direitos reservados.</span>
           <span className="footer-bottom-note">Atendimento e pedidos pelo WhatsApp, sem checkout online.</span>
         </div>
         <div className="footer-dev">
           <hr className="footer-dev-line" />
           <span>Desenvolvido por{' '}<a href="https://agenciafuturadesign.com" target="_blank" rel="noreferrer" aria-label="Futura Design">
-            <img src="/logo-futura.webp" alt="Futura Design" className="footer-dev-logo" />
+            <OptimizedImage
+              src="/logo-futura.webp"
+              alt="Futura Design"
+              className="footer-dev-logo"
+              loading="lazy"
+              decoding="async"
+            />
           </a></span>
         </div>
       </footer>

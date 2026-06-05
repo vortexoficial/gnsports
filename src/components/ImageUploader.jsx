@@ -45,7 +45,7 @@ function ImageUploader({
       <div className="image-uploader-heading">
         <div>
           <strong>{label}</strong>
-          <span>Adicione ate {maxImages} fotos. A primeira sera a imagem principal.</span>
+          <span>Adicione até {maxImages} fotos. A primeira será a imagem principal.</span>
         </div>
         <span>{images.length}/{maxImages}</span>
       </div>
@@ -53,7 +53,7 @@ function ImageUploader({
       <div className="product-image-grid">
         {images.map((image, index) => (
           <div key={`${image.type}-${image.index}`} className="product-image-tile">
-            <img src={image.src} alt={`Imagem do produto ${index + 1}`} />
+            <img src={image.src} alt={`Imagem do produto ${index + 1}`} decoding="async" />
             <span>{index === 0 ? 'Principal' : `Foto ${index + 1}`}</span>
             <button
               type="button"

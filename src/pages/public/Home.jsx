@@ -4,6 +4,7 @@ import BenefitGrid from '../../components/BenefitGrid.jsx'
 import EmptyState from '../../components/EmptyState.jsx'
 import HeroBannerCarousel from '../../components/HeroBannerCarousel.jsx'
 import Loading from '../../components/Loading.jsx'
+import OptimizedImage from '../../components/OptimizedImage.jsx'
 import ProductCarousel from '../../components/ProductCarousel.jsx'
 import ProductCard from '../../components/ProductCard.jsx'
 import { isSupabaseConfigured } from '../../config/env.js'
@@ -114,7 +115,7 @@ function Home() {
                   aria-label={title}
                 >
                   {slot.image_url ? (
-                    <img src={slot.image_url} alt="" loading="lazy" />
+                    <OptimizedImage src={slot.image_url} alt="" loading="lazy" decoding="async" />
                   ) : (
                     <span className="cat-home-placeholder">{title}</span>
                   )}
@@ -227,7 +228,12 @@ function Home() {
               <Link key={post.id} to={`/blog/${post.slug}`} className="blog-card">
                 {post.cover_url ? (
                   <div className="blog-card-cover">
-                    <img src={post.cover_url} alt={post.title} loading="lazy" />
+                    <OptimizedImage
+                      src={post.cover_url}
+                      alt={post.title}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                 ) : (
                   <div className="blog-card-cover blog-card-cover-placeholder" aria-hidden="true" />

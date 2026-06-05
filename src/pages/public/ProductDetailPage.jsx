@@ -3,6 +3,7 @@ import { Link, useOutletContext, useParams } from 'react-router-dom'
 import CheckoutModal from '../../components/CheckoutModal.jsx'
 import EmptyState from '../../components/EmptyState.jsx'
 import Loading from '../../components/Loading.jsx'
+import OptimizedImage from '../../components/OptimizedImage.jsx'
 import ProductCard from '../../components/ProductCard.jsx'
 import { isSupabaseConfigured } from '../../config/env.js'
 import { getProductBySlug, listProducts } from '../../services/productsService.js'
@@ -77,7 +78,13 @@ function ProductDetailPage() {
         <section className="product-media-panel">
           {gallery.length ? (
             gallery.map((url, index) => (
-              <img key={url} src={url} alt={`${product.name} ${index + 1}`} />
+              <OptimizedImage
+                key={url}
+                src={url}
+                alt={`${product.name} ${index + 1}`}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
             ))
           ) : (
             <div className="image-preview-empty large">Sem imagem</div>

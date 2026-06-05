@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Loading from '../../components/Loading.jsx'
+import OptimizedImage from '../../components/OptimizedImage.jsx'
 import { getPostBySlug } from '../../services/blogService.js'
 
 function formatDate(str) {
@@ -41,7 +42,7 @@ function BlogPostPage() {
     <main className="page blog-post-page">
       {post.cover_url ? (
         <div className="blog-post-cover">
-          <img src={post.cover_url} alt={post.title} />
+          <OptimizedImage src={post.cover_url} alt={post.title} loading="eager" decoding="async" />
         </div>
       ) : null}
 

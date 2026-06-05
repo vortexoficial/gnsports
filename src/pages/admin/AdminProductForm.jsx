@@ -157,7 +157,11 @@ function AdminProductForm() {
     try {
       const uploadedImageUrls = []
       for (const file of imageFiles.slice(0, 5)) {
-        uploadedImageUrls.push(await uploadStoreImage(file, 'products'))
+        uploadedImageUrls.push(await uploadStoreImage(file, 'products', {
+          convertToWebp: true,
+          maxWidth: 1600,
+          quality: 0.82,
+        }))
       }
       const allImageUrls = [...imageUrls, ...uploadedImageUrls].filter(Boolean).slice(0, 5)
       const imageUrl = allImageUrls[0] || ''

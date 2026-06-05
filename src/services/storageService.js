@@ -7,6 +7,7 @@ function canConvertToWebp(file) {
     file?.type?.startsWith('image/') &&
     file.type !== 'image/svg+xml' &&
     file.type !== 'image/webp' &&
+    file.type !== 'image/gif' &&
     typeof document !== 'undefined'
   )
 }
@@ -76,7 +77,7 @@ export async function uploadStoreImage(file, folder = 'products', options = {}) 
 
   unwrap(
     await client.storage.from(env.productImageBucket).upload(path, uploadFile, {
-      cacheControl: '3600',
+      cacheControl: '31536000',
       upsert: false,
       contentType: uploadFile.type || undefined,
     }),

@@ -51,7 +51,13 @@ function SlotCard({ slot, onSaved }) {
     setSaved(false)
     try {
       let imageUrl = slot.image_url
-      if (file) imageUrl = await uploadStoreImage(file, 'banners/categorias')
+      if (file) {
+        imageUrl = await uploadStoreImage(file, 'banners/categorias', {
+          convertToWebp: true,
+          maxWidth: 1200,
+          quality: 0.82,
+        })
+      }
       await updateHomeCategoryBanner(slot.id, { name: name.trim(), link_to: linkTo.trim(), image_url: imageUrl })
       setFile(null)
       setSaved(true)

@@ -1,7 +1,9 @@
+import OptimizedImage from './OptimizedImage.jsx'
+
 function BrandLogo({ compact = false }) {
   return (
     <span className={compact ? 'brand-logo compact' : 'brand-logo'} aria-hidden="true">
-      <img src="/logo.png" alt="" />
+      <OptimizedImage src="/logo.png" alt="" decoding="async" />
     </span>
   )
 }
