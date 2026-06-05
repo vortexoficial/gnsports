@@ -13,24 +13,44 @@ import { listPosts } from '../../services/blogService.js'
 import { listHomeCategoryBanners } from '../../services/homeCategoryBannersService.js'
 import { listProducts } from '../../services/productsService.js'
 
-const CATEGORY_BANNER_COPY = {
-  camisas: 'Camisas',
-  clubes: 'Clubes',
-  selecoes: 'Seleções',
-  retro: 'Retro',
-  esportes: 'Esportes',
-  produtos: 'Produtos',
-  ofertas: 'Ofertas',
-}
+const CATEGORY_BANNER_COPY = [
+  ['novidades', 'Novidades'],
+  ['selecoes', 'Seleções'],
+  ['clubes', 'Clubes'],
+  ['retro', 'Retro'],
+  ['esportes', 'Esportes'],
+  ['esportivos', 'Esportes'],
+  ['camisas', 'Camisas'],
+  ['produtos', 'Produtos'],
+  ['ofertas', 'Ofertas'],
+]
 
-function getCategoryBannerCopy(slot) {
-  const key = (slot.link_to || slot.name || '')
+function normalizeBannerText(value) {
+  return String(value || '')
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+}
 
-  const match = Object.keys(CATEGORY_BANNER_COPY).find((item) => key.includes(item))
-  return match ? CATEGORY_BANNER_COPY[match] : slot.name || CATEGORY_BANNER_COPY.produtos
+function findCategoryBannerCopy(value) {
+  const key = normalizeBannerText(value)
+  return CATEGORY_BANNER_COPY.find(([term]) => key.includes(term))?.[1]
+}
+
+function getCategoryBannerCopy(slot) {
+  if (Number(slot.slot) === 1) return 'Novidades'
+
+  return (
+    findCategoryBannerCopy(slot.name) ||
+    findCategoryBannerCopy(slot.link_to) ||
+    slot.name ||
+    'Produtos'
+  )
+}
+
+function getCategoryBannerLink(slot) {
+  if (Number(slot.slot) === 1) return '/produtos'
+  return slot.link_to || '/produtos'
 }
 
 function IconWhatsapp() {
@@ -105,12 +125,13 @@ function Home() {
           <div className="cat-home-grid">
             {categoryBanners.map((slot) => {
               const title = getCategoryBannerCopy(slot)
+              const linkTo = getCategoryBannerLink(slot)
 
               return (
                 <Link
                   key={slot.id}
                   className="cat-home-item"
-                  to={slot.link_to || '/produtos'}
+                  to={linkTo}
                   aria-label={title}
                 >
                   {slot.image_url ? (
@@ -127,14 +148,14 @@ function Home() {
           </div>
         ) : (
           <div className="category-grid premium-categories">
-            <Link className="category-link category-featured" to="/camisas" style={{ '--cat-img': 'url(/demo-shirts/camisa-rubro-negra-demo.png)' }}>
+            <Link className="category-link category-featured" to="/produtos" style={{ '--cat-img': 'url(/demo-shirts/camisa-rubro-negra-demo.png)' }}>
+              <strong>Novidades</strong>
+            </Link>
+            <Link className="category-link category-featured" to="/camisas" style={{ '--cat-img': 'url(/demo-shirts/camisa-brasil-amarela-demo.png)' }}>
               <strong>Camisas</strong>
             </Link>
             <Link className="category-link category-featured" to="/esportes" style={{ '--cat-img': 'url(/demo-sports-items/bola-campo-gold-demo.png)' }}>
               <strong>Esportes</strong>
-            </Link>
-            <Link className="category-link category-featured" to="/produtos" style={{ '--cat-img': 'url(/demo-sports-items/luva-goleiro-gold-demo.png)' }}>
-              <strong>Produtos</strong>
             </Link>
             <Link className="category-link category-featured" to="/ofertas?sort=promocoes" style={{ '--cat-img': 'url(/demo-shirts/camisa-branca-dourada-demo.png)' }}>
               <strong>Ofertas</strong>
